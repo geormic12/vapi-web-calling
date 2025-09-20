@@ -115,12 +115,38 @@ class VapiCallManager {
   handleMessage(message) {
     console.log("Message received:", message);
 
-    if (message.type === "function-call" && this.currentAgent) {
-      this.handleFunctionCall(message.functionCall);
+    // Check for tool calls in conversation-update messages
+    if (message.type === "conversation-update") {
+      // Look for tool calls in the conversation
+      if (message.conversation) {
+        message.conversation.forEach((msg) => {
+          if (msg.tool_calls && msg.tool_calls.length > 0) {
+            console.log("Found tool_calls:", msg.tool_calls);
+
+            msg.tool_calls.forEach((toolCall) => {
+              // Convert tool call to function call format
+              const functionCall = {
+                name: toolCall.function?.name,
+                parameters: toolCall.function?.arguments ? JSON.parse(toolCall.function.arguments) : {}
+              };
+
+              console.log("Executing function:", functionCall.name, "with parameters:", functionCall.parameters);
+
+              if (this.currentAgent && functionCall.name) {
+                this.handleFunctionCall(functionCall);
+              }
+            });
+          }
+        });
+      }
+
+      this.updateChat(message);
     }
 
-    if (message.type === "conversation-update") {
-      this.updateChat(message);
+    // Keep the original function-call handler as backup
+    if (message.type === "function-call" && this.currentAgent) {
+      console.log("Direct function-call message received");
+      this.handleFunctionCall(message.functionCall);
     }
   }
 
@@ -147,7 +173,7 @@ class VapiCallManager {
       return;
     }
 
-    console.log(`Handling function call for ${this.currentAgent}:`, functionCall);
+    console.log(`Executing ${functionCall.name} for ${this.currentAgent}`);
 
     const result = this.functionHandlers.handleFunctionCall(
       this.currentAgent,
@@ -155,9 +181,9 @@ class VapiCallManager {
     );
 
     if (result) {
-      console.log("Function call result:", result);
-      // Note: Vapi typically handles function call results automatically
-      // but you can send results back if needed
+      console.log("Function executed successfully:", result.message || result);
+    } else {
+      console.warn("Function execution failed or returned null");
     }
   }
 

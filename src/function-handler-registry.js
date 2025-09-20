@@ -23,7 +23,6 @@ export class FunctionHandlerRegistry {
 
         try {
             const result = handler.handleFunctionCall(functionCall);
-            console.log(`Function call result for ${agentId}:`, result);
             return result;
         } catch (error) {
             console.error(`Error handling function call for ${agentId}:`, error);

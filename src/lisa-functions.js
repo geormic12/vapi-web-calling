@@ -20,7 +20,7 @@ export class LisaFunctionHandler {
             case 'WriteText':
                 return this.writeText(functionCall.parameters);
             default:
-                console.warn(`Unknown function: ${functionCall.name}`);
+                console.warn(`LisaFunctionHandler: Unknown function: ${functionCall.name}`);
                 return null;
         }
     }
@@ -65,11 +65,13 @@ export class LisaFunctionHandler {
 
     writeText(parameters) {
         const { Text } = parameters;
-        console.log(`Lisa writing text: ${Text}`);
+        console.log(`Lisa writing: "${Text}"`);
 
         const textArea = document.getElementById('vapiTyping');
         if (textArea) {
             textArea.textContent = `Lisa: ${Text}`;
+        } else {
+            console.error('Could not find vapiTyping element');
         }
 
         return {
