@@ -12,7 +12,9 @@ This repository demonstrates a sophisticated multi-agent Vapi SDK integration pa
 ## Core System Components
 
 ### 1. VapiCallManager (`src/index.js`)
+
 Main orchestrator class that manages:
+
 - Vapi SDK instance and call lifecycle
 - Agent switching and state management
 - Event handling and UI updates
@@ -30,20 +32,23 @@ class VapiCallManager {
 ```
 
 ### 2. Agent Registry (`src/agent-registry.js`)
+
 Centralized agent configuration management:
 
 ```javascript
 export const agentRegistry = {
   agentId: {
     name: "AgentName",
-    displayName: "Display Name", 
+    displayName: "Display Name",
     systemPrompt: systemPromptVariable,
     voice: { voiceId: "sarah", provider: "11labs" },
     firstMessage: "Hello! I'm...",
-    functions: [/* agent-specific functions */],
-    model: { model: "gpt-3.5-turbo", /* config */ },
+    functions: [
+      /* agent-specific functions */
+    ],
+    model: { model: "gpt-3.5-turbo" /* config */ },
     // ... full assistant config
-  }
+  },
 };
 
 export function buildAssistantOptions(agentConfig) {
@@ -52,6 +57,7 @@ export function buildAssistantOptions(agentConfig) {
 ```
 
 ### 3. Agent Components (`src/agent-component.js`)
+
 Dynamic UI generation and management:
 
 ```javascript
@@ -69,14 +75,13 @@ export function updateAgentUI(agentId, isActive, isCurrentAgent) {
 ```
 
 ### 4. Function Handler Registry (`src/function-handler-registry.js`)
+
 Routes function calls to agent-specific handlers:
 
 ```javascript
 export class FunctionHandlerRegistry {
   constructor() {
-    this.handlers = new Map([
-      ['agentId', new AgentFunctionHandler()],
-    ]);
+    this.handlers = new Map([["agentId", new AgentFunctionHandler()]]);
   }
 
   handleFunctionCall(agentId, functionCall) {
@@ -91,16 +96,18 @@ export class FunctionHandlerRegistry {
 ### Creating New Agents
 
 1. **Create Agent Prompt File** (`src/{agent-name}-prompt.js`):
+
 ```javascript
 export const agentNameSystemPrompt = `Your detailed system prompt...`;
 ```
 
 2. **Create Function Handler** (`src/{agent-name}-functions.js`):
+
 ```javascript
 export class AgentNameFunctionHandler {
   handleFunctionCall(functionCall) {
     switch (functionCall.name) {
-      case 'CustomFunction':
+      case "CustomFunction":
         return this.handleCustomFunction(functionCall.parameters);
       default:
         return null;
@@ -110,8 +117,9 @@ export class AgentNameFunctionHandler {
 ```
 
 3. **Register in Agent Registry**:
+
 ```javascript
-import { agentNameSystemPrompt } from './agent-name-prompt.js';
+import { agentNameSystemPrompt } from "./agent-name-prompt.js";
 
 export const agentRegistry = {
   agentname: {
@@ -120,28 +128,30 @@ export const agentRegistry = {
     functions: [
       {
         name: "CustomFunction",
-        parameters: { /* OpenAPI schema */ },
-        description: "Function description"
-      }
+        parameters: {
+          /* OpenAPI schema */
+        },
+        description: "Function description",
+      },
     ],
     // ... rest of config
-  }
+  },
 };
 ```
 
 4. **Register Function Handler**:
+
 ```javascript
-import { AgentNameFunctionHandler } from './agent-name-functions.js';
+import { AgentNameFunctionHandler } from "./agent-name-functions.js";
 
 // In FunctionHandlerRegistry constructor:
-this.handlers = new Map([
-  ['agentname', new AgentNameFunctionHandler()],
-]);
+this.handlers = new Map([["agentname", new AgentNameFunctionHandler()]]);
 ```
 
 ### Agent Template Usage
 
 Use `src/agent-template.js` as a starting point:
+
 - Copy and rename to `{agent-name}-functions.js`
 - Replace `{AgentName}` and `{agentId}` placeholders
 - Implement custom functions
@@ -181,7 +191,7 @@ handleMessage(message) {
       }
     });
   }
-  
+
   // Legacy function-call support
   if (message.type === "function-call") {
     this.handleFunctionCall(message.functionCall);
@@ -197,10 +207,10 @@ handleMessage(message) {
 updateUIForCall(isActive) {
   Object.keys(agentRegistry).forEach(agentId => {
     updateAgentUI(config.name, isActive, agentId === this.currentAgent);
-    
+
     const button = document.getElementById(`callWith${config.name}`);
     if (button) {
-      button.style.backgroundColor = isActive && agentId === this.currentAgent 
+      button.style.backgroundColor = isActive && agentId === this.currentAgent
         ? "#007aff" : "#858585";
     }
   });
@@ -250,18 +260,21 @@ src/
 ## Code Organization Standards
 
 ### File Organization
+
 - **Maximum 500 lines per file** - split complex logic into modules
 - **Maximum 30 lines per function** - maintain readability
 - **Separation of concerns**: prompts, functions, and configs in separate files
 - **Template-driven development**: use `agent-template.js` for consistency
 
 ### Agent Naming Conventions
+
 - **File names**: `{agent-name}-functions.js`, `{agent-name}-prompt.js`
 - **Class names**: `{AgentName}FunctionHandler`
 - **Registry keys**: lowercase agent identifier
 - **Display names**: Human-readable agent names
 
 ### Function Call Patterns
+
 - **Consistent return format**: `{ success: boolean, data: any, agent: string, message: string }`
 - **Error handling**: Try-catch with structured error responses
 - **Parameter validation**: Validate all function parameters before processing
@@ -270,18 +283,21 @@ src/
 ## Advanced Patterns
 
 ### Agent Switching
+
 - Only one agent active at a time
 - Automatic UI state updates when switching
 - Clean state reset on call end
 - Visual feedback for active/inactive agents
 
 ### Chat Integration
+
 - Real-time conversation display
 - Support for user, assistant, and tool messages
 - Auto-scrolling chat window
 - Tool call visualization ("Processing request...")
 
 ### Error Handling
+
 - Graceful degradation on function call failures
 - User-friendly error messages
 - Console logging for debugging
@@ -296,4 +312,4 @@ src/
 5. **Error Handling**: Log errors but show user-friendly messages
 6. **Performance**: Use event delegation and efficient DOM updates
 7. **Modularity**: Keep agents and functions decoupled and testable</content>
-  <parameter name="filePath">c:\Users\mikeg\Documents\AI\vapi-web-calling\.github\copilot-instructions.md
+   <parameter name="filePath">c:\Users\mikeg\Documents\AI\vapi-web-calling\.github\copilot-instructions.md
