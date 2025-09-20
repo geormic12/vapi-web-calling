@@ -13,6 +13,7 @@ class VapiCallManager {
     this.assistantIsSpeaking = false;
     this.volumeLevel = 0;
     this.maxSpread = 30;
+    this.callEndedNaturally = false; // Track natural call endings
 
     // UI elements
     this.statusDisplay = document.getElementById("status");
@@ -60,15 +61,22 @@ class VapiCallManager {
   async startCall(agentConfig) {
     const assistantOptions = buildAssistantOptions(agentConfig);
 
+    // Show loading state with helpful message
+    this.updateUIForCall(true);
+    const instructionsElement = document.getElementById('instructions');
+    if (instructionsElement) {
+      instructionsElement.textContent = 'Connecting... Please allow microphone access when prompted.';
+    }
+
     try {
       this.currentCall = await this.vapi.start(assistantOptions);
-      this.updateUIForCall(true);
       console.log(`Started call with ${agentConfig.displayName}`);
     } catch (error) {
       console.error("Call failed:", error);
       this.handleError(error);
       this.currentAgent = null;
       this.currentCall = null;
+      this.updateUIForCall(false);
     }
   }
 
@@ -95,9 +103,15 @@ class VapiCallManager {
     this.currentAgent = null;
     this.assistantIsSpeaking = false;
     this.volumeLevel = 0;
+    this.callEndedNaturally = true; // Mark that call ended through proper channel
     this.updateUI();
     this.updateUIForCall(false);
     resetAllAgentUI(agentRegistry);
+
+    // Reset the flag after a brief delay to catch any delayed error events
+    setTimeout(() => {
+      this.callEndedNaturally = false;
+    }, 1000);
   }
 
   handleSpeechStart() {
@@ -169,11 +183,25 @@ class VapiCallManager {
 
   handleFunctionCall(functionCall) {
     if (!this.currentAgent) {
-      console.warn("Function call received but no current agent");
+      console.warn("⚠️ Function call received but no current agent");
       return;
     }
 
-    console.log(`Executing ${functionCall.name} for ${this.currentAgent}`);
+    console.log(`🚀 FUNCTION CALL EXECUTION:`, {
+      functionName: functionCall.name,
+      agent: this.currentAgent,
+      parameters: functionCall.parameters,
+      timestamp: new Date().toISOString()
+    });
+
+    // Special logging for knowledge base access
+    if (functionCall.name === 'SearchIntegrityKnowledgeBase') {
+      console.log(`📚 LISA KNOWLEDGE BASE ACCESS DETECTED!`, {
+        query: functionCall.parameters?.query,
+        category: functionCall.parameters?.category,
+        agent: this.currentAgent
+      });
+    }
 
     const result = this.functionHandlers.handleFunctionCall(
       this.currentAgent,
@@ -181,13 +209,45 @@ class VapiCallManager {
     );
 
     if (result) {
-      console.log("Function executed successfully:", result.message || result);
+      console.log(`✅ FUNCTION EXECUTED SUCCESSFULLY:`, {
+        functionName: functionCall.name,
+        agent: this.currentAgent,
+        resultMessage: result.message || 'Function completed',
+        resultData: result,
+        timestamp: new Date().toISOString()
+      });
+      
+      // Additional logging for knowledge base results
+      if (functionCall.name === 'SearchIntegrityKnowledgeBase' && result.results) {
+        console.log(`📖 KNOWLEDGE BASE RESULTS:`, {
+          totalResults: result.totalResults,
+          returnedResults: result.results.length,
+          query: result.query,
+          results: result.results.map(r => ({ key: r.key, relevance: r.relevanceScore }))
+        });
+      }
     } else {
-      console.warn("Function execution failed or returned null");
+      console.warn(`❌ FUNCTION EXECUTION FAILED:`, {
+        functionName: functionCall.name,
+        agent: this.currentAgent,
+        timestamp: new Date().toISOString()
+      });
     }
   }
 
   handleError(error) {
+    // Check if this is a natural call termination based on error content
+    const isNaturalTermination =
+      error.errorMsg === "Meeting has ended" ||
+      (error.error && error.error.message === "Meeting has ended") ||
+      (error.error && error.error.msg === "Meeting has ended");
+
+    // If we just ended a call naturally, ignore subsequent WebRTC cleanup errors
+    if (this.callEndedNaturally || isNaturalTermination) {
+      console.log("Call ended naturally (WebRTC cleanup)");
+      return;
+    }
+
     console.error("Vapi error:", error);
     this.connected = false;
 
@@ -221,7 +281,7 @@ class VapiCallManager {
 
     const statusText = isActive && this.currentAgent
       ? `Connected to ${agentRegistry[this.currentAgent]?.displayName || 'agent'}`
-      : 'Click a microphone to start a call. Click again to stop it.';
+      : 'Click a microphone to start a call. You may need to allow microphone access twice for security.';
 
     const instructionsElement = document.getElementById('instructions');
     if (instructionsElement) {

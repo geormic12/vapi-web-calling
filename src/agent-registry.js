@@ -1,10 +1,10 @@
-import { lisaSystemPrompt } from './lisa-prompt.js';
+import { lisaSystemPrompt2 } from './lisa-prompt.js';
 
 export const agentRegistry = {
     lisa: {
         name: "Lisa",
         displayName: "Lisa",
-        systemPrompt: lisaSystemPrompt,
+        systemPrompt: lisaSystemPrompt2,
         voice: {
             voiceId: "sarah",
             provider: "11labs",
