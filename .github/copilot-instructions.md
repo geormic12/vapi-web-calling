@@ -160,5 +160,13 @@ function updateChat(conversationUpdate) {
 - Handle errors gracefully with user-friendly messages
 - Update visual feedback immediately on speech/volume events
 - Clean up state on call-end to prevent stale UI
-- Use conversation-update events for chat history display</content>
+- Use conversation-update events for chat history display
+
+## Code Organization Guidelines
+
+- Maintain each agent in its own separate file
+- Keep large texts in separate files that are called via variables
+- Keep all files to less than 500 lines
+- Keep all functions to less than 30 lines
+- Maintain readability and human readability via having multiple files that clearly outline different functional components when necessary</content>
   <parameter name="filePath">c:\Users\mikeg\Documents\AI\vapi-web-calling\.github\copilot-instructions.md
