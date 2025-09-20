@@ -1,7 +1,7 @@
 export class LisaFunctionHandler {
     constructor() {
         console.log(`🚀 Initializing Lisa's Integrity Knowledge Base...`);
-        
+
         this.knowledgeBase = new Map([
             // Core Integrity Definitions
             ['integrity definition', {
@@ -29,7 +29,7 @@ export class LisaFunctionHandler {
                 content: 'The foundation of integrity. Your word to yourself (e.g., "I am a person of integrity" or personal commitments like "I\'ll work out tomorrow") must be honored just as rigorously. Not honoring it diminishes you as a whole person and creates inconsistency others notice.',
                 keywords: ['self-commitment', 'personal word', 'foundation', 'consistency']
             }],
-            
+
             // Werner Erhard Principles
             ['ontological law', {
                 category: 'philosophy',
@@ -46,7 +46,7 @@ export class LisaFunctionHandler {
                 content: 'Morality: Society\'s standards of desirable/undesirable behavior. Ethics: A group\'s agreed-upon standards of right/wrong conduct. Legality: Laws and rules enforced by authority. Integrity incorporates these as potential "words" but is separate - it\'s about wholeness, not virtue.',
                 keywords: ['morality', 'ethics', 'legality', 'virtue', 'distinction']
             }],
-            
+
             // Coaching Methodology
             ['ontological coaching', {
                 category: 'coaching',
@@ -63,7 +63,7 @@ export class LisaFunctionHandler {
                 content: 'Direct, probing, empowering, with a sense of possibility. Use "distinguish" often. Speak conversationally, pause for responses, paraphrase to confirm. Focus on "access to" breakthroughs, not problems. Be warm, confident, engaging.',
                 keywords: ['werner erhard', 'distinguish', 'conversational', 'empowering']
             }],
-            
+
             // Common Signs and Patterns
             ['signs out of integrity', {
                 category: 'integrity',
@@ -80,7 +80,7 @@ export class LisaFunctionHandler {
                 content: 'When things work reliably, predictably, and effectively. Integrity creates workability. Out of integrity creates unworkability - things become unreliable and performance diminishes.',
                 keywords: ['workability', 'reliable', 'predictable', 'effective']
             }],
-            
+
             // Practical Applications
             ['cleaning up messes', {
                 category: 'integrity',
@@ -136,7 +136,7 @@ export class LisaFunctionHandler {
     searchKnowledgeBase(parameters) {
         const { query, category } = parameters;
         const timestamp = new Date().toISOString();
-        
+
         console.log(`📖 KNOWLEDGE BASE SEARCH INITIATED:`, {
             query: query,
             category: category || 'all categories',
@@ -150,16 +150,16 @@ export class LisaFunctionHandler {
         const queryLower = query.toLowerCase();
         const results = [];
         let totalScanned = 0;
-        
+
         this.knowledgeBase.forEach((data, key) => {
             totalScanned++;
             let relevanceScore = 0;
-            
+
             // Category filtering
             if (category && data.category !== category.toLowerCase()) {
                 return; // Skip if category doesn't match
             }
-            
+
             // Exact key match (highest relevance)
             if (key.toLowerCase() === queryLower) {
                 relevanceScore = 100;
@@ -176,13 +176,13 @@ export class LisaFunctionHandler {
                 console.log(`📝 CONTENT MATCH FOUND: "${key}" with score ${relevanceScore}`);
             }
             // Keywords match
-            else if (data.keywords && data.keywords.some(keyword => 
+            else if (data.keywords && data.keywords.some(keyword =>
                 keyword.toLowerCase().includes(queryLower) || queryLower.includes(keyword.toLowerCase())
             )) {
                 relevanceScore = 70;
                 console.log(`🏷️ KEYWORD MATCH FOUND: "${key}" with score ${relevanceScore}`);
             }
-            
+
             if (relevanceScore > 0) {
                 results.push({
                     key,
@@ -196,7 +196,7 @@ export class LisaFunctionHandler {
 
         // Sort by relevance score (highest first)
         results.sort((a, b) => b.relevanceScore - a.relevanceScore);
-        
+
         // Limit results to top 5 most relevant
         const topResults = results.slice(0, 5);
 
@@ -208,7 +208,7 @@ export class LisaFunctionHandler {
             topResults: topResults.map(r => ({ key: r.key, score: r.relevanceScore })),
             timestamp: timestamp
         });
-        
+
         if (topResults.length === 0) {
             console.log(`❌ NO MATCHES FOUND for query: "${query}" in category: ${category || 'all'}`);
         }
@@ -282,7 +282,7 @@ export class LisaFunctionHandler {
         const categories = this.getAvailableCategories();
         const totalEntries = this.knowledgeBase.size;
         const categoryBreakdown = {};
-        
+
         categories.forEach(category => {
             categoryBreakdown[category] = Array.from(this.knowledgeBase.values())
                 .filter(data => data.category === category).length;
@@ -304,7 +304,7 @@ export class LisaFunctionHandler {
                 statusElement.innerHTML = `📚 Lisa accessing knowledge base: "${query}"${categoryText}`;
                 statusElement.style.color = '#007aff';
                 statusElement.style.fontWeight = 'bold';
-                
+
                 // Clear the message after 3 seconds
                 setTimeout(() => {
                     if (statusElement.innerHTML.includes('accessing knowledge base')) {
@@ -329,7 +329,7 @@ export class LisaFunctionHandler {
                 messageDiv.style.fontStyle = 'italic';
                 messageDiv.style.backgroundColor = '#f0f8ff';
                 messageDiv.style.borderLeft = '3px solid #007aff';
-                
+
                 chatElement.appendChild(messageDiv);
                 chatElement.scrollTop = chatElement.scrollHeight;
             }

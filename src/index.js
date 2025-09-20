@@ -14,6 +14,7 @@ class VapiCallManager {
     this.volumeLevel = 0;
     this.maxSpread = 30;
     this.callEndedNaturally = false; // Track natural call endings
+    this.processedToolCalls = new Set(); // Track processed tool calls to prevent duplicates
 
     // UI elements
     this.statusDisplay = document.getElementById("status");
@@ -104,6 +105,7 @@ class VapiCallManager {
     this.assistantIsSpeaking = false;
     this.volumeLevel = 0;
     this.callEndedNaturally = true; // Mark that call ended through proper channel
+    this.processedToolCalls.clear(); // Clear processed tool calls for next call
     this.updateUI();
     this.updateUIForCall(false);
     resetAllAgentUI(agentRegistry);
@@ -138,6 +140,18 @@ class VapiCallManager {
             console.log("Found tool_calls:", msg.tool_calls);
 
             msg.tool_calls.forEach((toolCall) => {
+              // Create a unique identifier for this tool call
+              const toolCallId = toolCall.id || `${toolCall.function?.name}-${JSON.stringify(toolCall.function?.arguments)}-${msg.timestamp || Date.now()}`;
+
+              // Skip if we've already processed this tool call
+              if (this.processedToolCalls.has(toolCallId)) {
+                console.log("Skipping already processed tool call:", toolCallId);
+                return;
+              }
+
+              // Mark this tool call as processed
+              this.processedToolCalls.add(toolCallId);
+
               // Convert tool call to function call format
               const functionCall = {
                 name: toolCall.function?.name,
@@ -216,7 +230,7 @@ class VapiCallManager {
         resultData: result,
         timestamp: new Date().toISOString()
       });
-      
+
       // Additional logging for knowledge base results
       if (functionCall.name === 'SearchIntegrityKnowledgeBase' && result.results) {
         console.log(`📖 KNOWLEDGE BASE RESULTS:`, {
