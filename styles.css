@@ -1,0 +1,321 @@
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: rgb(2,0,36);
+  background-image: linear-gradient(
+    140deg,
+    hsl(0deg 0% 0%) 0%,
+    hsl(221deg 100% 9%) 72%,
+    hsl(216deg 83% 12%) 100%
+  );
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Status Bar */
+#status, #speaker, #volume {
+  position: fixed;
+  top: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  z-index: 1000;
+}
+
+#status {
+  left: 10px;
+}
+
+#speaker {
+  left: 150px;
+}
+
+#volume {
+  left: 280px;
+}
+
+/* Main Container */
+.container {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Agents Grid */
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 20px;
+}
+
+.agent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Call Buttons */
+.call-button {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #858585;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.call-button.active {
+  background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
+  animation: pulse 2s infinite;
+}
+
+.call-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.call-button.disabled:hover {
+  transform: none;
+}
+
+/* Microphone Icons */
+.microphone-icon, 
+.call-button svg {
+  width: 40px;
+  height: 40px;
+  fill: #fff;
+  transition: fill 0.3s ease;
+}
+
+/* Agent Names */
+.agent-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Status Messages */
+.status-message {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin: 20px 0;
+  min-height: 20px;
+}
+
+.instructions {
+  color: #a0a0a0;
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+/* Text Area */
+#vapiTyping {
+  width: 100%;
+  max-width: 500px;
+  height: 120px;
+  background: rgba(3, 21, 52, 0.9);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 15px;
+  color: #d2d2d2;
+  padding: 20px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  margin: 20px auto;
+  display: block;
+}
+
+#vapiTyping:focus {
+  outline: none;
+  border-color: rgba(102, 126, 234, 0.6);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+}
+
+/* Chat Window */
+.chat-window {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  height: 400px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 15px;
+  padding: 15px;
+  overflow-y: auto;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.6);
+  border-radius: 3px;
+}
+
+.chat-window .message {
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.chat-window .user {
+  background: linear-gradient(135deg, #0f8912 0%, #0a6b0d 100%);
+  color: white;
+  text-align: right;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.chat-window .assistant {
+  background: linear-gradient(135deg, #4b9cd3 0%, #326fa8 100%);
+  color: white;
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.chat-window .tool {
+  background: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%);
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { 
+    box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.7); 
+  }
+  70% { 
+    box-shadow: 0 0 0 20px rgba(0, 122, 255, 0); 
+  }
+  100% { 
+    box-shadow: 0 0 0 0 rgba(0, 122, 255, 0); 
+  }
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.agent-container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    margin-top: 80px;
+  }
+  
+  .container h1 {
+    font-size: 2rem;
+  }
+  
+  .agents-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+  }
+  
+  .call-button {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .microphone-icon,
+  .call-button svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .chat-window {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    height: 300px;
+  }
+  
+  #vapiTyping {
+    height: 100px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .agents-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .call-button {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .microphone-icon,
+  .call-button svg {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .agent-name {
+    font-size: 14px;
+  }
+}
