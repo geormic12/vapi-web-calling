@@ -1,5 +1,5 @@
 export function createAgentComponent(agentId, config) {
-  return `
+    return `
     <div class="agent-container" data-agent-id="${agentId}">
       <div class="${config.buttonClass}" id="callWith${config.name}">
         <svg class="${config.iconClass}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -12,44 +12,44 @@ export function createAgentComponent(agentId, config) {
 }
 
 export function createAgentsGrid(agentRegistry) {
-  return Object.entries(agentRegistry)
-    .map(([agentId, config]) => createAgentComponent(agentId, config))
-    .join('');
+    return Object.entries(agentRegistry)
+        .map(([agentId, config]) => createAgentComponent(agentId, config))
+        .join('');
 }
 
 export function attachAgentListeners(agentRegistry, callManager) {
-  Object.keys(agentRegistry).forEach(agentId => {
-    const button = document.getElementById(`callWith${agentRegistry[agentId].name}`);
-    if (button) {
-      button.addEventListener('click', () => callManager.handleAgentCall(agentId));
-    }
-  });
+    Object.keys(agentRegistry).forEach(agentId => {
+        const button = document.getElementById(`callWith${agentRegistry[agentId].name}`);
+        if (button) {
+            button.addEventListener('click', () => callManager.handleAgentCall(agentId));
+        }
+    });
 }
 
 export function updateAgentUI(agentId, isActive, isCurrentAgent) {
-  const button = document.getElementById(`callWith${agentId}`);
-  if (button) {
-    button.classList.toggle('active', isActive && isCurrentAgent);
-    button.classList.toggle('disabled', isActive && !isCurrentAgent);
-    
-    if (isActive && !isCurrentAgent) {
-      button.style.opacity = '0.5';
-      button.style.cursor = 'not-allowed';
-    } else {
-      button.style.opacity = '1';
-      button.style.cursor = 'pointer';
+    const button = document.getElementById(`callWith${agentId}`);
+    if (button) {
+        button.classList.toggle('active', isActive && isCurrentAgent);
+        button.classList.toggle('disabled', isActive && !isCurrentAgent);
+
+        if (isActive && !isCurrentAgent) {
+            button.style.opacity = '0.5';
+            button.style.cursor = 'not-allowed';
+        } else {
+            button.style.opacity = '1';
+            button.style.cursor = 'pointer';
+        }
     }
-  }
 }
 
 export function resetAllAgentUI(agentRegistry) {
-  Object.keys(agentRegistry).forEach(agentId => {
-    updateAgentUI(agentId, false, false);
-    // Reset any custom styling
-    const button = document.getElementById(`callWith${agentId}`);
-    if (button) {
-      button.style.backgroundColor = '';
-      button.style.boxShadow = '';
-    }
-  });
+    Object.keys(agentRegistry).forEach(agentId => {
+        updateAgentUI(agentId, false, false);
+        // Reset any custom styling
+        const button = document.getElementById(`callWith${agentId}`);
+        if (button) {
+            button.style.backgroundColor = '';
+            button.style.boxShadow = '';
+        }
+    });
 }

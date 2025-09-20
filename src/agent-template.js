@@ -2,75 +2,75 @@
 // Copy this file and rename it to {agent-name}-functions.js
 
 export class NewAgentFunctionHandler {
-  constructor() {
-    // Initialize any agent-specific data structures
-    this.agentData = new Map();
-    this.specialCapabilities = [];
-  }
-
-  handleFunctionCall(functionCall) {
-    switch (functionCall.name) {
-      case 'ChangeColor':
-        return this.changeColor(functionCall.parameters);
-      case 'WriteText':
-        return this.writeText(functionCall.parameters);
-      case 'YourCustomFunction':
-        return this.handleCustomFunction(functionCall.parameters);
-      default:
-        console.warn(`Unknown function: ${functionCall.name}`);
-        return null;
-    }
-  }
-
-  changeColor(parameters) {
-    const { ColorCode } = parameters;
-    console.log(`{AgentName} changing color to: ${ColorCode}`);
-    
-    // Apply color change to this agent's button
-    const button = document.getElementById('callWith{AgentName}');
-    if (button) {
-      button.style.backgroundColor = ColorCode;
+    constructor() {
+        // Initialize any agent-specific data structures
+        this.agentData = new Map();
+        this.specialCapabilities = [];
     }
 
-    return {
-      success: true,
-      colorCode: ColorCode,
-      agent: '{AgentName}',
-      message: `{AgentName} changed color to ${ColorCode}`
-    };
-  }
-
-  writeText(parameters) {
-    const { Text } = parameters;
-    console.log(`{AgentName} writing text: ${Text}`);
-    
-    const textArea = document.getElementById('vapiTyping');
-    if (textArea) {
-      textArea.textContent = `{AgentName}: ${Text}`;
+    handleFunctionCall(functionCall) {
+        switch (functionCall.name) {
+            case 'ChangeColor':
+                return this.changeColor(functionCall.parameters);
+            case 'WriteText':
+                return this.writeText(functionCall.parameters);
+            case 'YourCustomFunction':
+                return this.handleCustomFunction(functionCall.parameters);
+            default:
+                console.warn(`Unknown function: ${functionCall.name}`);
+                return null;
+        }
     }
 
-    return {
-      success: true,
-      text: Text,
-      agent: '{AgentName}',
-      message: `{AgentName} wrote: ${Text}`
-    };
-  }
+    changeColor(parameters) {
+        const { ColorCode } = parameters;
+        console.log(`{AgentName} changing color to: ${ColorCode}`);
 
-  handleCustomFunction(parameters) {
-    // Implement your custom function logic here
-    console.log('{AgentName} custom function called with:', parameters);
-    
-    // Example implementation
-    return {
-      success: true,
-      data: parameters,
-      agent: '{AgentName}',
-      message: '{AgentName} executed custom function'
-    };
-  }
+        // Apply color change to this agent's button
+        const button = document.getElementById('callWith{AgentName}');
+        if (button) {
+            button.style.backgroundColor = ColorCode;
+        }
 
-  // Add more agent-specific methods as needed
+        return {
+            success: true,
+            colorCode: ColorCode,
+            agent: '{AgentName}',
+            message: `{AgentName} changed color to ${ColorCode}`
+        };
+    }
+
+    writeText(parameters) {
+        const { Text } = parameters;
+        console.log(`{AgentName} writing text: ${Text}`);
+
+        const textArea = document.getElementById('vapiTyping');
+        if (textArea) {
+            textArea.textContent = `{AgentName}: ${Text}`;
+        }
+
+        return {
+            success: true,
+            text: Text,
+            agent: '{AgentName}',
+            message: `{AgentName} wrote: ${Text}`
+        };
+    }
+
+    handleCustomFunction(parameters) {
+        // Implement your custom function logic here
+        console.log('{AgentName} custom function called with:', parameters);
+
+        // Example implementation
+        return {
+            success: true,
+            data: parameters,
+            agent: '{AgentName}',
+            message: '{AgentName} executed custom function'
+        };
+    }
+
+    // Add more agent-specific methods as needed
 }
 
 /*

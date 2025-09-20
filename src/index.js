@@ -13,7 +13,7 @@ class VapiCallManager {
     this.assistantIsSpeaking = false;
     this.volumeLevel = 0;
     this.maxSpread = 30;
-    
+
     // UI elements
     this.statusDisplay = document.getElementById("status");
     this.speakerDisplay = document.getElementById("speaker");
@@ -21,7 +21,7 @@ class VapiCallManager {
     this.vapiTyping = document.getElementById("vapiTyping");
     this.vapiStatusMessage = document.getElementById("vapiStatusMessage");
     this.chatWindow = document.getElementById("chat");
-    
+
     this.setupEventListeners();
     this.renderAgents();
   }
@@ -59,7 +59,7 @@ class VapiCallManager {
 
   async startCall(agentConfig) {
     const assistantOptions = buildAssistantOptions(agentConfig);
-    
+
     try {
       this.currentCall = await this.vapi.start(assistantOptions);
       this.updateUIForCall(true);
@@ -114,7 +114,7 @@ class VapiCallManager {
 
   handleMessage(message) {
     console.log("Message received:", message);
-    
+
     if (message.type === "function-call" && this.currentAgent) {
       this.handleFunctionCall(message.functionCall);
     }
@@ -148,9 +148,9 @@ class VapiCallManager {
     }
 
     console.log(`Handling function call for ${this.currentAgent}:`, functionCall);
-    
+
     const result = this.functionHandlers.handleFunctionCall(
-      this.currentAgent, 
+      this.currentAgent,
       functionCall
     );
 
@@ -181,7 +181,7 @@ class VapiCallManager {
     Object.keys(agentRegistry).forEach(agentId => {
       const config = agentRegistry[agentId];
       updateAgentUI(config.name, isActive, agentId === this.currentAgent);
-      
+
       // Update button background color
       const button = document.getElementById(`callWith${config.name}`);
       if (button) {
@@ -196,7 +196,7 @@ class VapiCallManager {
     const statusText = isActive && this.currentAgent
       ? `Connected to ${agentRegistry[this.currentAgent]?.displayName || 'agent'}`
       : 'Click a microphone to start a call. Click again to stop it.';
-    
+
     const instructionsElement = document.getElementById('instructions');
     if (instructionsElement) {
       instructionsElement.textContent = statusText;

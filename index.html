@@ -1,27 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vapi SDK Example | Multi-Agent Interface</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div id="status">Status: Disconnected</div>
     <div id="speaker">Speaker: none</div>
     <div id="volume">Volume: 0</div>
-    
+
     <div class="container">
       <h1>Choose Your AI Assistant</h1>
       <div id="agents-container" class="agents-grid">
         <!-- Agents will be dynamically rendered here -->
       </div>
-      
+
       <div id="vapiStatusMessage" class="status-message"></div>
-      <div id="instructions" class="instructions">Click a microphone to start a call. Click again to stop it.</div>
-      <textarea id="vapiTyping" readonly>Ask the assistant to write something...</textarea>
+      <div id="instructions" class="instructions">
+        Click a microphone to start a call. Click again to stop it.
+      </div>
+      <textarea id="vapiTyping" readonly>
+Ask the assistant to write something...</textarea
+      >
     </div>
-    
+
     <div id="chat" class="chat-window"></div>
     <script src="bundle.js"></script>
   </body>
