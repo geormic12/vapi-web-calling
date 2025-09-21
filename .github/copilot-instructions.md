@@ -4,10 +4,12 @@
 
 This repository demonstrates a sophisticated multi-agent Vapi SDK integration pattern:
 
-- **Modular Architecture**: Component-based system with agent registry, function handlers, and UI components
+- **Modular Architecture**: Component-based system with agent registry, function handlers, knowledge bases, and UI components
 - **Webpack/npm build** (`index.html` + `src/index.js`) - ES6 modules with Babel transpilation
 - **Agent Registry System**: Dynamic agent management with per-agent configurations and functions
 - **Function Handler Registry**: Centralized function call routing per agent
+- **Knowledge Base System**: Separate, editable knowledge bases for each agent
+- **Prompt Management**: Dedicated prompt files for easy editing and maintenance
 
 ## Core System Components
 
@@ -33,14 +35,16 @@ class VapiCallManager {
 
 ### 2. Agent Registry (`src/agent-registry.js`)
 
-Centralized agent configuration management:
+Centralized agent configuration management that imports prompts:
 
 ```javascript
+import { agentNameSystemPrompt } from './agent-name-prompt.js';
+
 export const agentRegistry = {
   agentId: {
     name: "AgentName",
     displayName: "Display Name",
-    systemPrompt: systemPromptVariable,
+    systemPrompt: agentNameSystemPrompt,
     voice: { voiceId: "sarah", provider: "11labs" },
     firstMessage: "Hello! I'm...",
     functions: [
@@ -91,6 +95,24 @@ export class FunctionHandlerRegistry {
 }
 ```
 
+### 5. Knowledge Base System
+
+Each agent has a dedicated knowledge base file for content management:
+
+```javascript
+// agent-name-knowledge-base.js
+export const agentNameKnowledgeBase = new Map([
+  ['concept key', {
+    category: 'category_name',
+    content: 'Detailed explanation...',
+    keywords: ['keyword1', 'keyword2']
+  }]
+]);
+
+export function getKnowledgeBaseStats() { /* utility functions */ }
+export function getAvailableCategories() { /* utility functions */ }
+```
+
 ## Agent Development Patterns
 
 ### Creating New Agents
@@ -99,24 +121,53 @@ export class FunctionHandlerRegistry {
 
 ```javascript
 export const agentNameSystemPrompt = `Your detailed system prompt...`;
+export const agentNameSystemPrompt2 = `Alternative prompt for testing...`;
 ```
 
-2. **Create Function Handler** (`src/{agent-name}-functions.js`):
+2. **Create Knowledge Base File** (`src/{agent-name}-knowledge-base.js`):
 
 ```javascript
+export const agentNameKnowledgeBase = new Map([
+  ['concept key', {
+    category: 'category',
+    content: 'Detailed explanation...',
+    keywords: ['keyword1', 'keyword2']
+  }]
+]);
+
+export function getKnowledgeBaseStats() { /* stats utility */ }
+export function getAvailableCategories() { /* categories utility */ }
+```
+
+3. **Create Function Handler** (`src/{agent-name}-functions.js`):
+
+```javascript
+import { agentNameKnowledgeBase, getKnowledgeBaseStats } from './agent-name-knowledge-base.js';
+
 export class AgentNameFunctionHandler {
+  constructor() {
+    this.knowledgeBase = agentNameKnowledgeBase;
+    // Initialize with stats logging
+  }
+
   handleFunctionCall(functionCall) {
     switch (functionCall.name) {
+      case "SearchKnowledgeBase":
+        return this.searchKnowledgeBase(functionCall.parameters);
       case "CustomFunction":
         return this.handleCustomFunction(functionCall.parameters);
       default:
         return null;
     }
   }
+
+  searchKnowledgeBase(parameters) {
+    // Standard knowledge base search implementation
+  }
 }
 ```
 
-3. **Register in Agent Registry**:
+4. **Register in Agent Registry**:
 
 ```javascript
 import { agentNameSystemPrompt } from "./agent-name-prompt.js";
@@ -127,19 +178,25 @@ export const agentRegistry = {
     systemPrompt: agentNameSystemPrompt,
     functions: [
       {
-        name: "CustomFunction",
+        name: "SearchKnowledgeBase",
         parameters: {
-          /* OpenAPI schema */
+          type: "object",
+          properties: {
+            query: { type: "string", description: "Search query" },
+            category: { type: "string", description: "Optional category filter" }
+          },
+          required: ["query"]
         },
-        description: "Function description",
+        description: "Search agent's knowledge base",
       },
+      // ... other functions
     ],
     // ... rest of config
   },
 };
 ```
 
-4. **Register Function Handler**:
+5. **Register Function Handler**:
 
 ```javascript
 import { AgentNameFunctionHandler } from "./agent-name-functions.js";
@@ -154,8 +211,37 @@ Use `src/agent-template.js` as a starting point:
 
 - Copy and rename to `{agent-name}-functions.js`
 - Replace `{AgentName}` and `{agentId}` placeholders
-- Implement custom functions
+- Implement custom functions and knowledge base integration
 - Follow the detailed integration steps in the template comments
+
+### Knowledge Base Management
+
+#### Knowledge Base Structure
+Each entry follows this pattern:
+```javascript
+['unique-concept-key', {
+  category: 'category_name',        // For filtering (e.g., 'integrity', 'coaching')
+  content: 'Detailed explanation of the concept...',
+  keywords: ['keyword1', 'keyword2', 'related_terms']
+}]
+```
+
+#### Search Implementation
+Standard search functionality includes:
+- Exact key matching (highest relevance: 100)
+- Partial key matching (relevance: 80)  
+- Keyword matching (relevance: 70)
+- Content matching (relevance: 60)
+- Category filtering
+- Results sorted by relevance score
+- Limited to top 5 results for performance
+
+#### Knowledge Base Benefits
+- **Independent Editing**: Content separated from function logic
+- **Version Control**: Easy to track knowledge changes
+- **Scalability**: Add unlimited concepts without code changes
+- **Consistency**: Standardized structure across agents
+- **Performance**: Efficient Map-based searching
 
 ## Event-Driven Architecture
 
@@ -248,14 +334,29 @@ python -m http.server 8000
 
 ```
 src/
-├── index.js                    # Main VapiCallManager class
-├── agent-registry.js          # Central agent configuration
-├── agent-component.js         # UI generation and management
+├── index.js                     # Main VapiCallManager class
+├── agent-registry.js           # Central agent configuration
+├── agent-component.js          # UI generation and management
 ├── function-handler-registry.js # Function call routing
-├── agent-template.js          # Template for new agents
-├── {agent}-prompt.js          # Agent system prompts
-└── {agent}-functions.js       # Agent function handlers
+├── agent-template.js           # Template for new agents
+├── {agent}-prompt.js           # Agent system prompts
+├── {agent}-knowledge-base.js   # Agent knowledge bases
+└── {agent}-functions.js        # Agent function handlers
 ```
+
+### Current Agents
+
+#### Lisa (Integrity Coach)
+- **Prompt**: `lisa-prompt.js` - Ontological coaching system prompts
+- **Knowledge Base**: `lisa-knowledge-base.js` - Comprehensive integrity concepts
+- **Functions**: `lisa-functions.js` - Integrity coaching and knowledge search
+- **Specialization**: Werner Erhard-style integrity coaching
+
+#### Briana (General Assistant)  
+- **Prompt**: `briana-prompt.js` - Helpful assistant system prompts
+- **Knowledge Base**: `briana-knowledge-base.js` - Currently empty, ready for content
+- **Functions**: `briana-functions.js` - General assistance and knowledge search
+- **Specialization**: Friendly, helpful general-purpose assistant
 
 ## Code Organization Standards
 
@@ -263,15 +364,16 @@ src/
 
 - **Maximum 500 lines per file** - split complex logic into modules
 - **Maximum 30 lines per function** - maintain readability
-- **Separation of concerns**: prompts, functions, and configs in separate files
+- **Separation of concerns**: prompts, functions, knowledge bases, and configs in separate files
 - **Template-driven development**: use `agent-template.js` for consistency
 
 ### Agent Naming Conventions
 
-- **File names**: `{agent-name}-functions.js`, `{agent-name}-prompt.js`
+- **File names**: `{agent-name}-functions.js`, `{agent-name}-prompt.js`, `{agent-name}-knowledge-base.js`
 - **Class names**: `{AgentName}FunctionHandler`
 - **Registry keys**: lowercase agent identifier
 - **Display names**: Human-readable agent names
+- **Knowledge base exports**: `{agentName}KnowledgeBase`
 
 ### Function Call Patterns
 
@@ -279,6 +381,7 @@ src/
 - **Error handling**: Try-catch with structured error responses
 - **Parameter validation**: Validate all function parameters before processing
 - **DOM safety**: Sanitize all parameters before DOM manipulation
+- **Knowledge base integration**: Use imported knowledge bases, not inline data
 
 ## Advanced Patterns
 
@@ -311,5 +414,8 @@ src/
 4. **State Management**: Clean up state on call end to prevent stale UI
 5. **Error Handling**: Log errors but show user-friendly messages
 6. **Performance**: Use event delegation and efficient DOM updates
-7. **Modularity**: Keep agents and functions decoupled and testable</content>
+7. **Modularity**: Keep agents and functions decoupled and testable
+8. **Knowledge Base Management**: Keep content separate from logic for easy editing
+9. **Prompt Organization**: Use dedicated prompt files for complex system prompts
+10. **Consistent Structure**: Follow the established patterns for all new agents</content>
    <parameter name="filePath">c:\Users\mikeg\Documents\AI\vapi-web-calling\.github\copilot-instructions.md

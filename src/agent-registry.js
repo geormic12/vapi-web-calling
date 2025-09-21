@@ -1,4 +1,5 @@
-import { lisaSystemPrompt2 } from './lisa-prompt.js';
+import { lisaSystemPrompt } from './lisa-prompt.js';
+import { brianaSystemPrompt } from './briana-prompt.js';
 
 export const agentRegistry = {
     lisa: {
@@ -95,7 +96,7 @@ export const agentRegistry = {
     briana: {
         name: "Briana",
         displayName: "Briana",
-        systemPrompt: `You are Briana, a friendly and helpful AI assistant. You provide clear, concise answers and are always ready to help with any questions or tasks. Keep your responses engaging and positive.`,
+        systemPrompt: brianaSystemPrompt,
         voice: {
             voiceId: "sarah",
             provider: "11labs",
@@ -106,6 +107,25 @@ export const agentRegistry = {
         buttonClass: "call-button",
         iconClass: "microphone-icon",
         functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: {
+                            type: "string",
+                            description: "Search query for knowledge base concepts"
+                        },
+                        category: {
+                            type: "string",
+                            description: "Category to search in (optional)"
+                        }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Briana's knowledge base for specific information"
+            },
             {
                 name: "ChangeColor",
                 async: false,
