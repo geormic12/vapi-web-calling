@@ -4,10 +4,10 @@ export class BrianaFunctionHandler {
     constructor() {
         this.assistantData = new Map();
         this.conversationHistory = [];
-        
+
         // Import knowledge base from separate file
         this.knowledgeBase = brianaKnowledgeBase;
-        
+
         console.log(`🚀 Initializing Briana's Knowledge Base...`);
         const stats = getKnowledgeBaseStats();
         console.log(`📚 Briana's Knowledge Base Initialized:`, {

@@ -38,7 +38,7 @@ class VapiCallManager {
 Centralized agent configuration management that imports prompts:
 
 ```javascript
-import { agentNameSystemPrompt } from './agent-name-prompt.js';
+import { agentNameSystemPrompt } from "./agent-name-prompt.js";
 
 export const agentRegistry = {
   agentId: {
@@ -102,15 +102,22 @@ Each agent has a dedicated knowledge base file for content management:
 ```javascript
 // agent-name-knowledge-base.js
 export const agentNameKnowledgeBase = new Map([
-  ['concept key', {
-    category: 'category_name',
-    content: 'Detailed explanation...',
-    keywords: ['keyword1', 'keyword2']
-  }]
+  [
+    "concept key",
+    {
+      category: "category_name",
+      content: "Detailed explanation...",
+      keywords: ["keyword1", "keyword2"],
+    },
+  ],
 ]);
 
-export function getKnowledgeBaseStats() { /* utility functions */ }
-export function getAvailableCategories() { /* utility functions */ }
+export function getKnowledgeBaseStats() {
+  /* utility functions */
+}
+export function getAvailableCategories() {
+  /* utility functions */
+}
 ```
 
 ## Agent Development Patterns
@@ -128,21 +135,31 @@ export const agentNameSystemPrompt2 = `Alternative prompt for testing...`;
 
 ```javascript
 export const agentNameKnowledgeBase = new Map([
-  ['concept key', {
-    category: 'category',
-    content: 'Detailed explanation...',
-    keywords: ['keyword1', 'keyword2']
-  }]
+  [
+    "concept key",
+    {
+      category: "category",
+      content: "Detailed explanation...",
+      keywords: ["keyword1", "keyword2"],
+    },
+  ],
 ]);
 
-export function getKnowledgeBaseStats() { /* stats utility */ }
-export function getAvailableCategories() { /* categories utility */ }
+export function getKnowledgeBaseStats() {
+  /* stats utility */
+}
+export function getAvailableCategories() {
+  /* categories utility */
+}
 ```
 
 3. **Create Function Handler** (`src/{agent-name}-functions.js`):
 
 ```javascript
-import { agentNameKnowledgeBase, getKnowledgeBaseStats } from './agent-name-knowledge-base.js';
+import {
+  agentNameKnowledgeBase,
+  getKnowledgeBaseStats,
+} from "./agent-name-knowledge-base.js";
 
 export class AgentNameFunctionHandler {
   constructor() {
@@ -183,9 +200,12 @@ export const agentRegistry = {
           type: "object",
           properties: {
             query: { type: "string", description: "Search query" },
-            category: { type: "string", description: "Optional category filter" }
+            category: {
+              type: "string",
+              description: "Optional category filter",
+            },
           },
-          required: ["query"]
+          required: ["query"],
         },
         description: "Search agent's knowledge base",
       },
@@ -217,19 +237,26 @@ Use `src/agent-template.js` as a starting point:
 ### Knowledge Base Management
 
 #### Knowledge Base Structure
+
 Each entry follows this pattern:
+
 ```javascript
-['unique-concept-key', {
-  category: 'category_name',        // For filtering (e.g., 'integrity', 'coaching')
-  content: 'Detailed explanation of the concept...',
-  keywords: ['keyword1', 'keyword2', 'related_terms']
-}]
+[
+  "unique-concept-key",
+  {
+    category: "category_name", // For filtering (e.g., 'integrity', 'coaching')
+    content: "Detailed explanation of the concept...",
+    keywords: ["keyword1", "keyword2", "related_terms"],
+  },
+];
 ```
 
 #### Search Implementation
+
 Standard search functionality includes:
+
 - Exact key matching (highest relevance: 100)
-- Partial key matching (relevance: 80)  
+- Partial key matching (relevance: 80)
 - Keyword matching (relevance: 70)
 - Content matching (relevance: 60)
 - Category filtering
@@ -237,6 +264,7 @@ Standard search functionality includes:
 - Limited to top 5 results for performance
 
 #### Knowledge Base Benefits
+
 - **Independent Editing**: Content separated from function logic
 - **Version Control**: Easy to track knowledge changes
 - **Scalability**: Add unlimited concepts without code changes
@@ -347,12 +375,14 @@ src/
 ### Current Agents
 
 #### Lisa (Integrity Coach)
+
 - **Prompt**: `lisa-prompt.js` - Ontological coaching system prompts
 - **Knowledge Base**: `lisa-knowledge-base.js` - Comprehensive integrity concepts
 - **Functions**: `lisa-functions.js` - Integrity coaching and knowledge search
 - **Specialization**: Werner Erhard-style integrity coaching
 
-#### Briana (General Assistant)  
+#### Briana (General Assistant)
+
 - **Prompt**: `briana-prompt.js` - Helpful assistant system prompts
 - **Knowledge Base**: `briana-knowledge-base.js` - Currently empty, ready for content
 - **Functions**: `briana-functions.js` - General assistance and knowledge search
@@ -418,4 +448,4 @@ src/
 8. **Knowledge Base Management**: Keep content separate from logic for easy editing
 9. **Prompt Organization**: Use dedicated prompt files for complex system prompts
 10. **Consistent Structure**: Follow the established patterns for all new agents</content>
-   <parameter name="filePath">c:\Users\mikeg\Documents\AI\vapi-web-calling\.github\copilot-instructions.md
+    <parameter name="filePath">c:\Users\mikeg\Documents\AI\vapi-web-calling\.github\copilot-instructions.md
