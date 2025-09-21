@@ -1,13 +1,38 @@
-Lisa - integrity
-Briana - Authenticity
-Betty - Begin Given By Something Greater Than yourself
-Bart - Being Cause In The matter
+# Vapi AI Coaching Agents
 
-Luigi - Liguistic Abstractions 
-Peter - Phenonmena
-Debbie - Domain 
-Tim - Synthesized Terms
+## Core Ontological Coaches (Werner Erhard Methodology)
 
-Paul - Perceptual Constraints
-Fred - Functional Constraints
+**Lisa - Integrity Coach**
+Advanced ontological coach trained in Werner Erhard's integrity methodology. Facilitates deep, transformative conversations about distinguishing integrity in life, helping users identify breakthrough opportunities and restore wholeness and completeness for increased workability and performance. Specializes in identifying areas where integrity is missing and creating pathways to restoration.
+
+**Briana - Authenticity Coach** 
+An ontological coach to discover being authentic, starting from being authentic about your inauthenticities.
+
+**Betty - Being Given By Something Greater Than Yourself Coach**
+Ontological coach specialized in Werner Erhard's profound distinction of "Being Given By Something Greater Than Yourself." Facilitates transformative conversations that help users discover and access their relationship to commitment, contribution, and participating in something larger than their individual concerns and circumstances. Focuses on authentic service and contribution.
+
+**Bart - Being Cause In The Matter Coach**
+Expert in Werner Erhard's transformational distinction of "Being Cause In The Matter." Facilitates conversations that help users discover and access their power to be the source and cause of their experience, rather than being at the effect of circumstances. Specializes in shifting from victim consciousness to empowerment and ownership.
+
+## Language & Communication Specialists
+
+**Luigi - Linguistic Abstractions Coach**
+Advanced coach specialized in exploring Unlimited Realms of Posibility. Expanding and pushing what is possible. (Expanding the mind) This unlimited realm of possibility pushes the mind beyond it's typical limits and provides more "ground" to cultivate a moving possibiliy inside of.
+
+**Peter - Phenomena Coach**
+Phenomenological specialist focused on distinguishing between direct experience and interpretations, stories, and meaning-making in regards to the creation of a new possiblity for living. By Phenonmena, we mean the "As-Lived" experience of the possibily in the world. 
+
+**Debbie - Domain Coach**
+Expert in distinguishing the domain in which new possibilities take root. 
+
+**Tim - Synthesized Terms Coach**
+Sythesizing what is known in the worl of Linguistic Abstractions, Phenonmena and Domain for a new context that uses you into a useful definition that can be memorized to support the adoptions of the new context.
+
+## Perceptual & Functional Specialists
+
+**Paul - Perceptual Constraints Coach**
+Advanced coach specialized in identifying and transcending invisible limitations in the person talking perceives reality. Reveals perceptual constraints and creates access to expanded perception and possibility. Expert in breakthrough thinking and expanded awareness beyond conventional limitations.
+
+**Fred - Functional Constraints Coach**
+Specialist in identifying and transcending operational limitations that prevent effective action and results. Reveals functional constraints and creates access to greater effectiveness and capability. Expert in operational excellence and performance optimization through constraint removal.
 
