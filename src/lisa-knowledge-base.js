@@ -134,6 +134,71 @@ export const lisaKnowledgeBase = new Map([
         content: 'The process: (1) Identify an important area where things aren\'t working well, (2) Distinguish integrity and explore where word is not whole/complete, (3) Guide restoration by honoring word and cleaning up messes, (4) Empower action and check for breakthroughs. Each step builds on the previous one.',
         keywords: ['breakthrough', 'methodology', 'restoration', 'empowerment', 'sequential']
     }],
+    ['coaching for breakthrough step 1 identify', {
+        category: 'breakthrough_coaching',
+        content: 'Step 1 - Identify: Help the person identify an important area where things aren\'t working well. Look for: diminished performance, recurring frustration, stuck patterns, or unfulfilled possibilities. Common breakdowns: person minimizes the importance, blames circumstances, or can\'t see the pattern. Coach responses: "What\'s an area where you\'d like things to work better?" "Where do you notice things breaking down repeatedly?" Stay curious, don\'t push.',
+        keywords: ['step 1', 'identify', 'not working', 'performance', 'frustration', 'patterns', 'minimizes', 'blames', 'curious']
+    }],
+    ['coaching for breakthrough step 2 distinguish', {
+        category: 'breakthrough_coaching',
+        content: 'Step 2 - Distinguish: Distinguish integrity and explore where word is not whole/complete. Look for: specific broken commitments, unspoken expectations, or avoided conversations. Common breakdowns: person gets defensive, claims they "tried hard," or can\'t see their role. Coach responses: "Where might your word not be whole and complete here?" "What commitments were made that weren\'t kept?" Be gentle but persistent. Help them see without making them wrong.',
+        keywords: ['step 2', 'distinguish', 'word not whole', 'broken commitments', 'defensive', 'tried hard', 'gentle', 'persistent']
+    }],
+    ['coaching for breakthrough step 3 restore', {
+        category: 'breakthrough_coaching',
+        content: 'Step 3 - Restore: Guide restoration by acknowledging, informing, cleaning up, and recommitting. Look for: willingness to take responsibility, capacity to see impact on others, readiness to make amends. Common breakdowns: person wants to skip steps, makes excuses, or rushes to "fix" without cleaning up. Coach responses: "What would acknowledging look like?" "Who needs to be informed?" Support them through the discomfort of taking full responsibility.',
+        keywords: ['step 3', 'restore', 'acknowledging', 'informing', 'cleaning up', 'responsibility', 'skip steps', 'excuses', 'discomfort']
+    }],
+    ['coaching for breakthrough step 4 empower', {
+        category: 'breakthrough_coaching',
+        content: 'Step 4 - Empower: Empower new action and check for breakthroughs. Look for: increased energy, new possibilities, sense of freedom, or expanded confidence. Common breakdowns: person doesn\'t recognize the shift, reverts to old patterns, or doesn\'t commit to new way of being. Coach responses: "What do you notice is different now?" "What\'s newly possible?" "What commitment will you make going forward?" Help them anchor the breakthrough and plan for sustainability.',
+        keywords: ['step 4', 'empower', 'new action', 'breakthrough', 'energy', 'possibilities', 'freedom', 'old patterns', 'sustainability']
+    }],
+    ['breakthrough coaching pitfalls', {
+        category: 'breakthrough_coaching',
+        content: 'Common coaching pitfalls in breakthrough work: (1) Moving too fast - rushing through steps without completion, (2) Making them wrong - judging or blaming instead of empowering, (3) Solving for them - giving answers instead of helping them see, (4) Skipping restoration - moving to action without cleaning up, (5) Missing the shift - not recognizing when breakthrough occurs, (6) Imposing timeline - pushing their pace instead of honoring their process.',
+        keywords: ['pitfalls', 'moving too fast', 'making wrong', 'solving for them', 'skipping restoration', 'missing shift', 'imposing timeline']
+    }],
+    ['signs of breakthrough occurring', {
+        category: 'breakthrough_coaching',
+        content: 'Signs that a breakthrough is occurring: (1) Shift in energy - from heavy to light, stuck to flowing, (2) New language - speaking differently about the situation, (3) Ownership - taking responsibility without defensiveness, (4) Possibility - seeing new options that weren\'t visible before, (5) Peace - sense of completion or resolution, (6) Commitment - natural desire to take new action, (7) Gratitude - appreciation for the insight or awareness.',
+        keywords: ['breakthrough signs', 'shift in energy', 'new language', 'ownership', 'possibility', 'peace', 'commitment', 'gratitude']
+    }],
+    ['breakthrough coaching resistance patterns', {
+        category: 'breakthrough_coaching',
+        content: 'Common resistance patterns during breakthrough coaching: (1) Intellectualizing - staying in head instead of feeling, (2) Deflecting - changing subject or making jokes, (3) Victim stance - "it\'s not my fault" or "I can\'t help it," (4) Righteousness - being right instead of being curious, (5) Overwhelm - "it\'s too much" or "I don\'t know where to start," (6) Cynicism - "this won\'t work" or "I\'ve tried everything." Each requires different coaching approach.',
+        keywords: ['resistance patterns', 'intellectualizing', 'deflecting', 'victim stance', 'righteousness', 'overwhelm', 'cynicism']
+    }],
+    ['breakthrough coaching inquiry techniques', {
+        category: 'breakthrough_coaching',
+        content: 'Powerful inquiry techniques for breakthrough coaching: (1) "What do you notice?" - builds awareness, (2) "What occurs to you?" - accesses intuition, (3) "Where might your word not be whole?" - explores integrity gaps, (4) "What would honoring your word look like?" - envisions possibility, (5) "What are you pretending not to know?" - reveals hidden awareness, (6) "What would be possible if...?" - opens new futures, (7) "What\'s the conversation you\'re avoiding?" - identifies restoration needs.',
+        keywords: ['inquiry techniques', 'what do you notice', 'what occurs', 'word not whole', 'honoring word', 'pretending not to know', 'what would be possible', 'conversation avoiding']
+    }],
+    ['breakthrough coaching pacing and timing', {
+        category: 'breakthrough_coaching',
+        content: 'Mastering pacing and timing in breakthrough coaching: (1) Go slow to go fast - allow processing time, don\'t rush insights, (2) Follow their energy - work with natural rhythms, not against them, (3) Create space for silence - breakthrough often happens in the pause, (4) Honor resistance - it often signals you\'re at the edge of breakthrough, (5) Track completion - ensure each step is finished before moving to next, (6) Recognize readiness - some breakthroughs require multiple sessions to ripen.',
+        keywords: ['pacing', 'timing', 'go slow', 'follow energy', 'silence', 'honor resistance', 'completion', 'readiness']
+    }],
+    ['breakthrough coaching emotional landscape', {
+        category: 'breakthrough_coaching',
+        content: 'Navigating emotional landscape during breakthrough coaching: (1) Shame/guilt phase - "I\'m bad/wrong" - normalize, don\'t fix, (2) Anger/blame phase - "It\'s their fault" - redirect to ownership, (3) Sadness/grief phase - "I\'ve lost something" - allow the mourning, (4) Fear/overwhelm phase - "I can\'t do this" - provide support and small steps, (5) Relief/freedom phase - "I can breathe again" - acknowledge the shift, (6) Excitement/possibility phase - "I can see new options" - harness the energy for commitment.',
+        keywords: ['emotional landscape', 'shame', 'anger', 'sadness', 'fear', 'relief', 'excitement', 'normalize', 'redirect', 'mourning']
+    }],
+    ['breakthrough coaching language patterns', {
+        category: 'breakthrough_coaching',
+        content: 'Effective language patterns for breakthrough coaching: (1) Distinguish vs. Judge - "I notice..." instead of "You always...", (2) Curious vs. Certain - "I wonder..." instead of "You should...", (3) Inviting vs. Demanding - "What would it look like if..." instead of "You need to...", (4) Possibility vs. Problem - "What becomes available..." instead of "What\'s wrong...", (5) Being vs. Doing - "Who are you being..." instead of "What are you doing...", (6) Future-focused vs. Past-focused - "What do you want to create..." instead of "Why did you...".',
+        keywords: ['language patterns', 'distinguish vs judge', 'curious vs certain', 'inviting vs demanding', 'possibility vs problem', 'being vs doing', 'future vs past']
+    }],
+    ['breakthrough coaching session structure', {
+        category: 'breakthrough_coaching',
+        content: 'Typical breakthrough coaching session structure: (1) Check-in - current state and energy (5 min), (2) Focus identification - what wants attention today (10 min), (3) Exploration - inquiry into the breakdown/pattern (20 min), (4) Distinction/insight - moment of seeing/breakthrough (10 min), (5) Integration - what this means and what\'s possible (10 min), (6) Commitment - specific actions and way of being (5 min). Total 60 minutes. Allow flexibility - breakthroughs don\'t follow clocks.',
+        keywords: ['session structure', 'check-in', 'focus identification', 'exploration', 'distinction', 'integration', 'commitment', 'flexibility']
+    }],
+    ['post-breakthrough integration support', {
+        category: 'breakthrough_coaching',
+        content: 'Supporting integration after breakthrough: (1) Acknowledge the courage - recognize what it took to have the breakthrough, (2) Normalize the wobble - expect some uncertainty as new way of being settles, (3) Create practice - specific ways to live from the breakthrough, (4) Schedule check-ins - regular touchpoints to reinforce the shift, (5) Address inevitable challenges - plan for when old patterns resurface, (6) Celebrate milestones - recognize progress and growth, (7) Deepen the learning - explore what made the breakthrough possible.',
+        keywords: ['integration support', 'acknowledge courage', 'normalize wobble', 'create practice', 'check-ins', 'challenges', 'celebrate', 'deepen learning']
+    }],
     ['four step breakthrough methodology', {
         category: 'components',
         content: 'The 4 steps of breakthrough methodology: (1) Identify - find an important area where things are not working well or performance is diminished, (2) Distinguish - explore and distinguish integrity, identifying where word is not whole and complete, (3) Restore - guide the restoration process by honoring word and cleaning up messes completely, (4) Empower - empower new action and check for breakthroughs in performance and possibility. Each step creates the foundation for the next.',
@@ -268,6 +333,21 @@ export const lisaKnowledgeBase = new Map([
         category: 'components',
         content: 'The 8 core integrity distinctions: (1) Integrity vs. morality/ethics - wholeness vs. virtue, (2) Phenomenon vs. concept - experience vs. understanding, (3) Being vs. doing - who you are vs. what you do, (4) Word vs. speech - commitments vs. just talking, (5) Honoring vs. keeping - the pathway vs. the action, (6) Workability vs. rightness - what works vs. what\'s right, (7) Restoration vs. punishment - cleaning up vs. paying a price, (8) Transformation vs. change - being different vs. doing different.',
         keywords: ['8 distinctions', 'integrity vs morality', 'phenomenon vs concept', 'being vs doing', 'word vs speech', 'honoring vs keeping', 'workability vs rightness', 'restoration vs punishment', 'transformation vs change']
+    }],
+    ['breakthrough coaching competencies', {
+        category: 'components',
+        content: 'The 8 essential breakthrough coaching competencies: (1) Deep listening - hearing beyond words to the being of the person, (2) Powerful inquiry - asking questions that reveal rather than interrogate, (3) Distinction making - helping people see what they couldn\'t see before, (4) Holding space - creating safety for vulnerability and breakthrough, (5) Reading energy - tracking shifts in aliveness and possibility, (6) Timing mastery - knowing when to push and when to pause, (7) Enrollment skills - inspiring participation without manipulation, (8) Integration support - helping anchor breakthroughs into daily life.',
+        keywords: ['8 competencies', 'deep listening', 'powerful inquiry', 'distinction making', 'holding space', 'reading energy', 'timing mastery', 'enrollment skills', 'integration support']
+    }],
+    ['breakthrough coaching warning signs', {
+        category: 'components',
+        content: 'The 7 warning signs of ineffective breakthrough coaching: (1) Moving too fast - pushing for breakthroughs on your timeline, (2) Making them wrong - judging or criticizing instead of empowering, (3) Solving for them - giving advice instead of fostering discovery, (4) Attachment to outcome - needing them to have a breakthrough for your validation, (5) Missing the resistance - not recognizing when they\'re protecting something important, (6) Skipping integration - achieving insight without sustainable change, (7) Losing presence - being in your head instead of present with them.',
+        keywords: ['7 warning signs', 'moving too fast', 'making wrong', 'solving for them', 'attachment outcome', 'missing resistance', 'skipping integration', 'losing presence']
+    }],
+    ['stages of breakthrough process', {
+        category: 'components',
+        content: 'The 6 stages people typically move through in breakthrough: (1) Unconscious incompetence - don\'t know what they don\'t know, (2) Conscious incompetence - become aware of the gap or breakdown, (3) Resistance phase - defending against change, protecting identity, (4) Exploration phase - curious about new possibilities, willing to examine, (5) Insight/breakthrough phase - moment of seeing, shift in being, (6) Integration phase - living from the new awareness, practicing new way of being. Not always linear - people can cycle through stages.',
+        keywords: ['6 stages', 'unconscious incompetence', 'conscious incompetence', 'resistance phase', 'exploration phase', 'insight phase', 'integration phase', 'cycling']
     }],
     ['signs of being out of integrity', {
         category: 'components',
