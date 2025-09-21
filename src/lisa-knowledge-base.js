@@ -26,6 +26,11 @@ export const lisaKnowledgeBase = new Map([
         content: 'Your word consists of six distinct elements: (1) What you said - explicit commitments and promises you made, (2) What you know to do - implied agreements based on circumstances, (3) What you stand for - your stated values and principles, (4) What you allow - things you permit by your silence or inaction, (5) What you expect of others - standards you hold others to, (6) What you say is so - your assertions about facts and reality.',
         keywords: ['word elements', 'commitments', 'implied agreements', 'values', 'standards', 'assertions']
     }],
+    ['six elements of word', {
+        category: 'components',
+        content: 'The 6 elements that comprise your "word": (1) What you said you would do - explicit commitments, promises, and agreements, (2) What you know to do - implied responsibilities based on roles, relationships, and circumstances, (3) What you stand for - your stated values, principles, and beliefs, (4) What you allow - things you permit through your silence, inaction, or tolerance, (5) What you expect of others - standards and behaviors you hold others accountable to, (6) What you say is so - your assertions about facts, reality, and truth. All six elements must be whole and complete for integrity.',
+        keywords: ['6 elements', 'explicit commitments', 'implied responsibilities', 'stated values', 'what you allow', 'expect of others', 'say is so']
+    }],
     ['honoring your word', {
         category: 'integrity',
         content: 'Honoring your word is the pathway to integrity. It means: (1) Keeping your word - doing exactly what you said you would do, by the time you said you\'d do it, in the way you said you\'d do it, OR (2) As soon as you know you will not keep your word, informing all parties who are counting on it that you won\'t, and cleaning up any mess (consequences, impacts, or fallout) you caused.',
@@ -92,8 +97,13 @@ export const lisaKnowledgeBase = new Map([
         content: 'A fundamental veil that makes integrity invisible to most people. Because integrity is not taught systematically, people don\'t distinguish between being in integrity vs. out of integrity. They may sense something is "off" but can\'t pinpoint what. This veil prevents people from accessing the power of integrity.',
         keywords: ['veil of invisibility', 'invisible', 'distinguish', 'systematically', 'power of integrity']
     }],
+    ['veil of invisibility components', {
+        category: 'components',
+        content: 'The 7 components of the Veil of Invisibility that make integrity invisible: (1) Lack of systematic education about integrity, (2) Confusion between integrity and morality/ethics, (3) Cultural conditioning that "trying hard" is enough, (4) Automatic listening that filters out integrity distinctions, (5) Rationalization and self-deception patterns, (6) Focus on being "right" rather than being whole, (7) Absence of practical tools for restoration. These components work together to keep integrity hidden from conscious awareness.',
+        keywords: ['veil components', '7 components', 'systematic education', 'confusion', 'trying hard', 'rationalization', 'being right']
+    }],
     ['morality vs integrity distinction', {
-        category: 'distinctions', 
+        category: 'distinctions',
         content: 'Morality: Society\'s standards of desirable/undesirable behavior. Ethics: A group\'s agreed-upon standards of right/wrong conduct. Legality: Laws and rules enforced by authority. Integrity incorporates these as potential "words" but is separate - it\'s about wholeness, not virtue. You can be moral, ethical, and legal while still being out of integrity.',
         keywords: ['morality', 'ethics', 'legality', 'virtue', 'distinction', 'wholeness', 'separate']
     }],
@@ -123,6 +133,11 @@ export const lisaKnowledgeBase = new Map([
         category: 'coaching',
         content: 'The process: (1) Identify an important area where things aren\'t working well, (2) Distinguish integrity and explore where word is not whole/complete, (3) Guide restoration by honoring word and cleaning up messes, (4) Empower action and check for breakthroughs. Each step builds on the previous one.',
         keywords: ['breakthrough', 'methodology', 'restoration', 'empowerment', 'sequential']
+    }],
+    ['four step breakthrough methodology', {
+        category: 'components',
+        content: 'The 4 steps of breakthrough methodology: (1) Identify - find an important area where things are not working well or performance is diminished, (2) Distinguish - explore and distinguish integrity, identifying where word is not whole and complete, (3) Restore - guide the restoration process by honoring word and cleaning up messes completely, (4) Empower - empower new action and check for breakthroughs in performance and possibility. Each step creates the foundation for the next.',
+        keywords: ['4 steps', 'identify area', 'distinguish integrity', 'restore', 'empower action', 'sequential foundation']
     }],
     ['werner erhard coaching style', {
         category: 'coaching',
@@ -155,6 +170,11 @@ export const lisaKnowledgeBase = new Map([
         category: 'restoration',
         content: 'To restore integrity: (1) Acknowledge where your word is not whole/complete without excuses or justifications, (2) Inform all affected parties immediately, (3) Clean up any messes created completely, (4) Recommit to honoring your word going forward, (5) Put systems in place to prevent recurrence.',
         keywords: ['restoration', 'acknowledge', 'inform', 'recommit', 'systems', 'prevent recurrence']
+    }],
+    ['five steps to restoration', {
+        category: 'components',
+        content: 'The 5 steps to restore integrity: (1) Acknowledge - recognize and admit where your word is not whole and complete, without excuses, justifications, or blame, (2) Inform - immediately communicate to all affected parties that you will not be keeping your word, (3) Clean up - take full responsibility for any mess, consequences, or impact you caused and make appropriate amends, (4) Recommit - make a new commitment to honoring your word going forward, (5) Systematize - put processes, systems, or structures in place to prevent the same breakdown from recurring.',
+        keywords: ['5 steps', 'acknowledge', 'inform immediately', 'clean up', 'recommit', 'systematize', 'prevent recurrence']
     }],
     ['dealing with impossible situations', {
         category: 'restoration',
@@ -241,6 +261,33 @@ export const lisaKnowledgeBase = new Map([
         category: 'philosophy',
         content: 'Traditional thinking: circumstances cause our experience. Integrity thinking: our way of being in circumstances creates our experience. This shift in causation model empowers people to transform their experience by transforming their being.',
         keywords: ['causation model', 'circumstances cause', 'way of being', 'creates experience', 'transform being']
+    }],
+
+    // ========== STRUCTURED COMPONENT LISTS ==========
+    ['core integrity distinctions', {
+        category: 'components',
+        content: 'The 8 core integrity distinctions: (1) Integrity vs. morality/ethics - wholeness vs. virtue, (2) Phenomenon vs. concept - experience vs. understanding, (3) Being vs. doing - who you are vs. what you do, (4) Word vs. speech - commitments vs. just talking, (5) Honoring vs. keeping - the pathway vs. the action, (6) Workability vs. rightness - what works vs. what\'s right, (7) Restoration vs. punishment - cleaning up vs. paying a price, (8) Transformation vs. change - being different vs. doing different.',
+        keywords: ['8 distinctions', 'integrity vs morality', 'phenomenon vs concept', 'being vs doing', 'word vs speech', 'honoring vs keeping', 'workability vs rightness', 'restoration vs punishment', 'transformation vs change']
+    }],
+    ['signs of being out of integrity', {
+        category: 'components',
+        content: 'The 10 common signs of being out of integrity: (1) Making excuses for not keeping commitments, (2) Blaming others or circumstances, (3) Feeling scattered, overwhelmed, or behind, (4) Low energy and vitality, (5) Broken promises and missed deadlines, (6) Inconsistency between words and actions, (7) Hidden messes or avoided conversations, (8) Defensiveness when questioned, (9) Self-deception and rationalization, (10) Cynicism and resignation about what\'s possible.',
+        keywords: ['10 signs', 'excuses', 'blaming', 'scattered', 'low energy', 'broken promises', 'inconsistency', 'hidden messes', 'defensiveness', 'self-deception', 'cynicism']
+    }],
+    ['benefits of integrity', {
+        category: 'components',
+        content: 'The 12 benefits of living in integrity: (1) Increased workability - things work better, (2) Expanded opportunities and possibilities, (3) Higher energy and vitality, (4) Greater trust from others, (5) Enhanced performance and effectiveness, (6) Clearer thinking and decision-making, (7) Reduced stress and anxiety, (8) Stronger relationships, (9) Access to power and influence, (10) Sense of wholeness and completion, (11) Increased self-respect and confidence, (12) Natural leadership and authority.',
+        keywords: ['12 benefits', 'workability', 'opportunities', 'energy', 'trust', 'performance', 'clear thinking', 'reduced stress', 'relationships', 'power', 'wholeness', 'self-respect', 'leadership']
+    }],
+    ['common self-deception patterns', {
+        category: 'components',
+        content: 'The 9 common self-deception patterns: (1) "I meant to do it" - intention substitutes for action, (2) "Something came up" - circumstances excuse breaking word, (3) "It wasn\'t really that important" - minimizing the commitment, (4) "They didn\'t really need it anyway" - mind-reading to avoid responsibility, (5) "I\'m too busy" - using busyness as justification, (6) "I\'m doing my best" - effort substitutes for results, (7) "They should understand" - expecting others to accommodate, (8) "It\'s not my fault" - deflecting responsibility, (9) "I\'ll make it up later" - deferring without cleaning up.',
+        keywords: ['9 patterns', 'meant to do', 'something came up', 'not important', 'didnt need it', 'too busy', 'doing my best', 'should understand', 'not my fault', 'make it up later']
+    }],
+    ['organizational integrity elements', {
+        category: 'components',
+        content: 'The 7 elements of organizational integrity: (1) Clear communication systems - everyone knows what\'s expected, (2) Realistic commitment-making processes - saying yes only when you can deliver, (3) Regular check-in and update protocols - early warning systems for potential breakdowns, (4) Mess cleanup procedures - protocols for when things go wrong, (5) Leadership modeling - executives demonstrating integrity consistently, (6) Cultural support for truth-telling - safety to speak up about problems, (7) Performance measurement that includes integrity - tracking workability, not just results.',
+        keywords: ['7 elements', 'clear communication', 'realistic commitments', 'check-in protocols', 'cleanup procedures', 'leadership modeling', 'truth-telling culture', 'performance measurement']
     }]
 ]);
 
