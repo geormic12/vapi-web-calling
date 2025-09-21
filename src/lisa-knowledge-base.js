@@ -10,99 +10,237 @@
  */
 
 export const lisaKnowledgeBase = new Map([
-    // Core Integrity Definitions
+    // ========== CORE INTEGRITY DEFINITIONS ==========
     ['integrity definition', {
         category: 'integrity',
-        content: 'Integrity is a positive phenomenon - a state of being whole, complete, unbroken, unimpaired, sound, and in perfect condition. It has nothing to do with good or bad, right or wrong, morality, ethics, or legality. It is purely a state or condition of wholeness.',
-        keywords: ['integrity', 'whole', 'complete', 'positive phenomenon']
+        content: 'Integrity is a positive phenomenon - a state of being whole, complete, unbroken, unimpaired, sound, and in perfect condition. It has nothing to do with good or bad, right or wrong, morality, ethics, or legality. It is purely a state or condition of wholeness. Integrity is about the whole of something - when nothing is missing and nothing is broken.',
+        keywords: ['integrity', 'whole', 'complete', 'positive phenomenon', 'unbroken', 'unimpaired']
     }],
     ['integrity for a person', {
         category: 'integrity',
-        content: 'For a person, integrity is a matter of your word being whole and complete. Your "word" includes: what you said you\'d do (explicit promises), what you know to do (unspoken expectations), what you stand for (values/principles), what you allow to happen (by not speaking up), what you expect of others (implied standards), and what you say is so (assertions of fact/reality).',
-        keywords: ['word', 'promises', 'values', 'expectations', 'wholeness']
+        content: 'For a person, integrity is a matter of your word being whole and complete. Your "word" includes: what you said you\'d do (explicit promises), what you know to do (unspoken expectations), what you stand for (values/principles), what you allow to happen (by not speaking up), what you expect of others (implied standards), and what you say is so (assertions of fact/reality). When your word is whole and complete, you have integrity.',
+        keywords: ['word', 'promises', 'values', 'expectations', 'wholeness', 'complete']
+    }],
+    ['the nature of word', {
+        category: 'integrity',
+        content: 'Your word consists of six distinct elements: (1) What you said - explicit commitments and promises you made, (2) What you know to do - implied agreements based on circumstances, (3) What you stand for - your stated values and principles, (4) What you allow - things you permit by your silence or inaction, (5) What you expect of others - standards you hold others to, (6) What you say is so - your assertions about facts and reality.',
+        keywords: ['word elements', 'commitments', 'implied agreements', 'values', 'standards', 'assertions']
     }],
     ['honoring your word', {
         category: 'integrity',
-        content: 'Honoring your word is the pathway to integrity. It means: (1) Keeping your word - doing exactly what you said you would do, by the time you said you\'d do it, OR (2) As soon as you know you will not keep your word, informing all parties who are counting on it that you won\'t, and cleaning up any mess (consequences, impacts, or fallout) you caused.',
-        keywords: ['honoring', 'keeping word', 'cleaning up', 'pathway']
+        content: 'Honoring your word is the pathway to integrity. It means: (1) Keeping your word - doing exactly what you said you would do, by the time you said you\'d do it, in the way you said you\'d do it, OR (2) As soon as you know you will not keep your word, informing all parties who are counting on it that you won\'t, and cleaning up any mess (consequences, impacts, or fallout) you caused.',
+        keywords: ['honoring', 'keeping word', 'cleaning up', 'pathway', 'informing']
     }],
     ['out of integrity', {
         category: 'integrity',
-        content: 'When your word is not whole and complete - when you\'re not honoring it. This creates "unworkability" in life: things become unreliable, unpredictable, and less effective. It leads to self-disintegration (feeling incomplete as a person), reduced trust from others, and a smaller opportunity set for performance.',
-        keywords: ['unworkability', 'unreliable', 'self-disintegration', 'trust']
+        content: 'When your word is not whole and complete - when you\'re not honoring it. This creates "unworkability" in life: things become unreliable, unpredictable, and less effective. It leads to self-disintegration (feeling incomplete as a person), reduced trust from others, a smaller opportunity set for performance, and diminished access to power. Being out of integrity is like having a leak in your pipeline of life.',
+        keywords: ['unworkability', 'unreliable', 'self-disintegration', 'trust', 'opportunity', 'power', 'leak']
     }],
     ['word to oneself', {
         category: 'integrity',
-        content: 'The foundation of integrity. Your word to yourself (e.g., "I am a person of integrity" or personal commitments like "I\'ll work out tomorrow") must be honored just as rigorously. Not honoring it diminishes you as a whole person and creates inconsistency others notice.',
-        keywords: ['self-commitment', 'personal word', 'foundation', 'consistency']
+        content: 'The foundation of integrity. Your word to yourself (e.g., "I am a person of integrity" or personal commitments like "I\'ll work out tomorrow") must be honored just as rigorously as your word to others. Not honoring it diminishes you as a whole person and creates inconsistency others notice. This is often the hardest aspect of integrity to master.',
+        keywords: ['self-commitment', 'personal word', 'foundation', 'consistency', 'self-honor']
     }],
 
-    // Werner Erhard Principles
-    ['ontological law', {
-        category: 'philosophy',
-        content: 'The Ontological Law of Integrity: As integrity diminishes, the opportunity for performance diminishes. Restoring integrity expands workability and opens breakthroughs.',
-        keywords: ['ontological law', 'performance', 'workability', 'breakthrough']
+    // ========== FUNDAMENTAL PRINCIPLES & LAWS ==========
+    ['ontological law of integrity', {
+        category: 'principles',
+        content: 'The Ontological Law of Integrity: As integrity diminishes, the opportunity for performance diminishes. Conversely, as integrity increases, the opportunity for performance increases. This law operates regardless of whether we are aware of it. Restoring integrity expands workability and opens breakthroughs in performance.',
+        keywords: ['ontological law', 'performance', 'workability', 'breakthrough', 'opportunity']
     }],
-    ['cost-benefit analysis', {
-        category: 'integrity',
-        content: 'Never apply cost-benefit analysis to honoring your word, as it virtually guarantees you\'ll be out of integrity and untrustworthy (unless you explicitly state upfront that you\'ll use it, but then you\'re declaring yourself an opportunist). Integrity requires honoring without contingency.',
-        keywords: ['cost-benefit', 'untrustworthy', 'opportunist', 'contingency']
+    ['missing factor of production', {
+        category: 'principles',
+        content: 'Integrity is the missing factor of production in economics and organizational performance. Traditional factors (land, labor, capital, technology) are insufficient without integrity. When integrity is present, all other factors work more effectively. When absent, performance degrades regardless of other resources.',
+        keywords: ['factor of production', 'economics', 'organizational performance', 'resources', 'effectiveness']
     }],
-    ['morality vs integrity', {
-        category: 'philosophy',
-        content: 'Morality: Society\'s standards of desirable/undesirable behavior. Ethics: A group\'s agreed-upon standards of right/wrong conduct. Legality: Laws and rules enforced by authority. Integrity incorporates these as potential "words" but is separate - it\'s about wholeness, not virtue.',
-        keywords: ['morality', 'ethics', 'legality', 'virtue', 'distinction']
+    ['cost-benefit analysis prohibition', {
+        category: 'principles',
+        content: 'Never apply cost-benefit analysis to honoring your word, as it virtually guarantees you\'ll be out of integrity and untrustworthy (unless you explicitly state upfront that you\'ll use it, but then you\'re declaring yourself an opportunist). Integrity requires honoring without contingency - it\'s binary, not negotiable.',
+        keywords: ['cost-benefit', 'untrustworthy', 'opportunist', 'contingency', 'binary', 'non-negotiable']
+    }],
+    ['value-free approach', {
+        category: 'principles',
+        content: 'Integrity work uses a value-free approach - it doesn\'t impose moral judgments about what people should value or do. Instead, it reveals the mechanics of how integrity works and lets people choose. This makes the work accessible across different value systems and belief structures.',
+        keywords: ['value-free', 'moral judgments', 'mechanics', 'choice', 'accessibility', 'belief systems']
     }],
 
-    // Coaching Methodology
-    ['ontological coaching', {
+    // ========== WORKABILITY & PERFORMANCE ==========
+    ['workability', {
+        category: 'performance',
+        content: 'The condition where things work reliably, predictably, and effectively. Integrity creates workability - when your word is whole and complete, life works better. Out of integrity creates unworkability - unreliability, unpredictability, and diminished effectiveness. Workability is measurable and observable.',
+        keywords: ['workability', 'reliable', 'predictable', 'effective', 'measurable', 'observable']
+    }],
+    ['unworkability symptoms', {
+        category: 'performance',
+        content: 'Signs of unworkability include: things breaking down frequently, missed deadlines, broken promises, people not trusting each other, energy drain, confusion, frustration, projects failing, relationships deteriorating, and a general sense that "nothing works around here."',
+        keywords: ['unworkability', 'breakdown', 'missed deadlines', 'broken promises', 'energy drain', 'confusion']
+    }],
+    ['performance correlation', {
+        category: 'performance',
+        content: 'There is a direct correlation between integrity and performance. High integrity individuals and organizations consistently outperform those with low integrity. This correlation exists because integrity creates the foundation for trust, collaboration, and effective action.',
+        keywords: ['performance correlation', 'high integrity', 'outperform', 'trust', 'collaboration', 'effective action']
+    }],
+    ['opportunity expansion', {
+        category: 'performance',
+        content: 'When integrity is present, opportunities naturally expand. People want to work with and for individuals they can count on. Doors open, resources become available, and possibilities emerge that weren\'t there before. This is the generative power of integrity.',
+        keywords: ['opportunity expansion', 'doors open', 'resources available', 'possibilities', 'generative power']
+    }],
+
+    // ========== DISTINCTIONS & VEILS ==========
+    ['veil of invisibility', {
+        category: 'distinctions',
+        content: 'A fundamental veil that makes integrity invisible to most people. Because integrity is not taught systematically, people don\'t distinguish between being in integrity vs. out of integrity. They may sense something is "off" but can\'t pinpoint what. This veil prevents people from accessing the power of integrity.',
+        keywords: ['veil of invisibility', 'invisible', 'distinguish', 'systematically', 'power of integrity']
+    }],
+    ['morality vs integrity distinction', {
+        category: 'distinctions', 
+        content: 'Morality: Society\'s standards of desirable/undesirable behavior. Ethics: A group\'s agreed-upon standards of right/wrong conduct. Legality: Laws and rules enforced by authority. Integrity incorporates these as potential "words" but is separate - it\'s about wholeness, not virtue. You can be moral, ethical, and legal while still being out of integrity.',
+        keywords: ['morality', 'ethics', 'legality', 'virtue', 'distinction', 'wholeness', 'separate']
+    }],
+    ['righteousness trap', {
+        category: 'distinctions',
+        content: 'The tendency to make integrity about being "right" or "good" rather than about wholeness. When people get righteous about integrity, they miss the point and often become judgmental. Integrity is not about moral superiority - it\'s about what works.',
+        keywords: ['righteousness', 'right', 'good', 'judgmental', 'moral superiority', 'what works']
+    }],
+    ['automatic listening', {
+        category: 'distinctions',
+        content: 'The pre-existing interpretive framework through which we hear and understand everything. Most people\'s automatic listening includes concepts like "integrity means being good" or "if I\'m trying hard, that\'s enough." Transforming integrity requires shifting this automatic listening.',
+        keywords: ['automatic listening', 'interpretive framework', 'pre-existing', 'trying hard', 'transforming']
+    }],
+    ['racket system', {
+        category: 'distinctions',
+        content: 'A self-perpetuating system of complaints, stories, and victim positions that people use to avoid responsibility and maintain their identity. Racket systems are incompatible with integrity because they keep people focused on being right rather than being whole and complete.',
+        keywords: ['racket system', 'complaints', 'victim positions', 'avoid responsibility', 'identity', 'being right']
+    }],
+
+    // ========== COACHING METHODOLOGY & APPROACH ==========
+    ['ontological coaching approach', {
         category: 'coaching',
-        content: 'A coaching methodology that focuses on the being of the person, not just their doing. It examines how language, emotions, and body create our experience of reality. The coach empowers the user to see for themselves, leading to breakthroughs where they feel whole, complete, and empowered.',
-        keywords: ['ontological', 'being', 'language', 'emotions', 'body', 'breakthrough']
+        content: 'A coaching methodology that focuses on the being of the person, not just their doing. It examines how language, emotions, and body create our experience of reality. The coach empowers the person to see for themselves, leading to breakthroughs where they feel whole, complete, and empowered. The focus is on transformation, not information.',
+        keywords: ['ontological', 'being', 'language', 'emotions', 'body', 'breakthrough', 'transformation']
     }],
     ['breakthrough methodology', {
         category: 'coaching',
-        content: 'The process: (1) Identify an important area where things aren\'t working well, (2) Distinguish integrity and explore where word is not whole/complete, (3) Guide restoration by honoring word and cleaning up messes, (4) Empower action and check for breakthroughs.',
-        keywords: ['breakthrough', 'methodology', 'restoration', 'empowerment']
+        content: 'The process: (1) Identify an important area where things aren\'t working well, (2) Distinguish integrity and explore where word is not whole/complete, (3) Guide restoration by honoring word and cleaning up messes, (4) Empower action and check for breakthroughs. Each step builds on the previous one.',
+        keywords: ['breakthrough', 'methodology', 'restoration', 'empowerment', 'sequential']
     }],
-    ['werner erhard style', {
+    ['werner erhard coaching style', {
         category: 'coaching',
-        content: 'Direct, probing, empowering, with a sense of possibility. Use "distinguish" often. Speak conversationally, pause for responses, paraphrase to confirm. Focus on "access to" breakthroughs, not problems. Be warm, confident, engaging.',
-        keywords: ['werner erhard', 'distinguish', 'conversational', 'empowering']
+        content: 'Direct, probing, empowering, with a sense of possibility. Use "distinguish" often. Speak conversationally, pause for responses, paraphrase to confirm understanding. Focus on "access to" breakthroughs, not problems. Be warm, confident, engaging. Create space for people to see for themselves.',
+        keywords: ['werner erhard', 'distinguish', 'conversational', 'empowering', 'possibility', 'see for themselves']
+    }],
+    ['inquiry methodology', {
+        category: 'coaching',
+        content: 'Ask questions that reveal rather than interrogate. Examples: "What do you notice about...?", "What occurs to you when...?", "Where might your word not be whole and complete?", "What would honoring your word look like here?" The goal is self-discovery, not right answers.',
+        keywords: ['inquiry', 'reveal', 'self-discovery', 'what do you notice', 'occurs to you']
+    }],
+    ['creating breakdowns for breakthroughs', {
+        category: 'coaching',
+        content: 'Sometimes the coach must help create a "breakdown" - a moment where the person\'s usual way of thinking or being doesn\'t work anymore. This creates an opening for a breakthrough. Breakdowns are doorways to transformation when handled skillfully.',
+        keywords: ['breakdown', 'breakthrough', 'usual way', 'opening', 'transformation', 'doorways']
+    }],
+    ['enrollment vs manipulation', {
+        category: 'coaching',
+        content: 'Enrollment is creating a possibility so compelling that people choose to participate freely. Manipulation is using techniques to get people to do what you want. In integrity coaching, we enroll people in the possibility of wholeness and let them choose their level of participation.',
+        keywords: ['enrollment', 'manipulation', 'compelling possibility', 'choose freely', 'wholeness', 'participation']
     }],
 
-    // Common Signs and Patterns
-    ['signs out of integrity', {
-        category: 'integrity',
-        content: 'Common signs: Excuses, blame, denial, or self-deception about not keeping word; inconsistency; hidden messes; applying cost-benefit analysis to honoring your word without disclosing it upfront; feeling incomplete or fragmented.',
-        keywords: ['excuses', 'blame', 'denial', 'self-deception', 'inconsistency']
-    }],
-    ['self-deception', {
-        category: 'integrity',
-        content: 'A common veil that prevents seeing where we\'re out of integrity. Part of the coaching process is gently helping people see through their automatic stories and look at their experience freshly.',
-        keywords: ['self-deception', 'veil', 'automatic stories', 'freshness']
-    }],
-    ['workability', {
-        category: 'integrity',
-        content: 'When things work reliably, predictably, and effectively. Integrity creates workability. Out of integrity creates unworkability - things become unreliable and performance diminishes.',
-        keywords: ['workability', 'reliable', 'predictable', 'effective']
-    }],
-
-    // Practical Applications
+    // ========== PRACTICAL APPLICATIONS & RESTORATION ==========
     ['cleaning up messes', {
-        category: 'integrity',
-        content: 'When you cannot keep your word, you must clean up any mess (consequences, impacts, or fallout) you caused for others or yourself. This includes acknowledging the impact, taking responsibility, and making appropriate amends.',
-        keywords: ['cleaning up', 'consequences', 'responsibility', 'amends']
+        category: 'restoration',
+        content: 'When you cannot keep your word, you must clean up any mess (consequences, impacts, or fallout) you caused for others or yourself. This includes acknowledging the impact, taking full responsibility, making appropriate amends, and ensuring the other party is whole. Cleaning up messes is not optional.',
+        keywords: ['cleaning up', 'consequences', 'responsibility', 'amends', 'whole', 'not optional']
     }],
     ['restoration process', {
-        category: 'coaching',
-        content: 'To restore integrity: (1) Acknowledge where word is not whole/complete, (2) Inform all affected parties, (3) Clean up any messes created, (4) Recommit to honoring your word going forward.',
-        keywords: ['restoration', 'acknowledge', 'inform', 'recommit']
+        category: 'restoration',
+        content: 'To restore integrity: (1) Acknowledge where your word is not whole/complete without excuses or justifications, (2) Inform all affected parties immediately, (3) Clean up any messes created completely, (4) Recommit to honoring your word going forward, (5) Put systems in place to prevent recurrence.',
+        keywords: ['restoration', 'acknowledge', 'inform', 'recommit', 'systems', 'prevent recurrence']
     }],
-    ['language and reality', {
+    ['dealing with impossible situations', {
+        category: 'restoration',
+        content: 'Sometimes honoring your word seems impossible due to changed circumstances. The key is to honor your word about how you handle the situation - inform immediately, tell the truth, clean up completely, and find creative solutions. The impossible often becomes possible when approached with integrity.',
+        keywords: ['impossible situations', 'changed circumstances', 'inform immediately', 'creative solutions']
+    }],
+    ['redefining word', {
+        category: 'restoration',
+        content: 'Sometimes restoring integrity requires redefining your word with mutual agreement. This is not breaking your word - it\'s consciously choosing to change it together. Both parties must agree, and any messes from the original commitment must still be cleaned up.',
+        keywords: ['redefining word', 'mutual agreement', 'consciously choosing', 'both parties agree']
+    }],
+    ['integrity in organizations', {
+        category: 'applications',
+        content: 'Organizational integrity requires systems, processes, and culture that support keeping commitments. This includes clear communication channels, realistic timeline setting, regular check-ins, and protocols for when things go wrong. Leadership must model integrity consistently.',
+        keywords: ['organizational integrity', 'systems', 'processes', 'culture', 'clear communication', 'leadership']
+    }],
+
+    // ========== SIGNS & SYMPTOMS ==========
+    ['signs out of integrity', {
+        category: 'symptoms',
+        content: 'Common signs: Making excuses, blaming others, denial about not keeping word, self-deception about circumstances, inconsistency between words and actions, hidden messes, applying cost-benefit analysis to honoring commitments, feeling incomplete or fragmented, low energy, cynicism.',
+        keywords: ['excuses', 'blame', 'denial', 'self-deception', 'inconsistency', 'hidden messes', 'cynicism']
+    }],
+    ['self-deception patterns', {
+        category: 'symptoms',
+        content: 'Common self-deception patterns include: "I meant to do it," "Something came up," "It wasn\'t really that important," "They didn\'t really need it anyway," "I\'m too busy to keep every little commitment," "I\'m doing my best." These stories prevent seeing where word is not whole.',
+        keywords: ['self-deception', 'meant to do', 'something came up', 'not important', 'too busy', 'doing my best']
+    }],
+    ['emotional indicators', {
+        category: 'symptoms',
+        content: 'Being out of integrity often shows up emotionally as: feeling scattered, overwhelmed, defensive, guilty, ashamed, frustrated, or like you\'re "behind" in life. There\'s often a sense of heaviness or burden. In integrity, people report feeling lighter, clearer, and more powerful.',
+        keywords: ['emotional indicators', 'scattered', 'overwhelmed', 'defensive', 'guilty', 'heaviness', 'lighter']
+    }],
+    ['energy and vitality', {
+        category: 'symptoms',
+        content: 'Integrity directly impacts energy and vitality. Being out of integrity is energetically expensive - it takes energy to maintain stories, avoid conversations, and manage the chaos of unworkability. Integrity restores energy and creates vitality.',
+        keywords: ['energy', 'vitality', 'energetically expensive', 'maintain stories', 'avoid conversations', 'chaos']
+    }],
+
+    // ========== ADVANCED CONCEPTS ==========
+    ['language and reality creation', {
+        category: 'advanced',
+        content: 'Language is not just descriptive but generative - it creates our reality and shapes our possibilities. In integrity work, how we speak about our commitments literally creates the reality of our relationships and opportunities. Our word has creative power.',
+        keywords: ['language', 'generative', 'reality creation', 'possibilities', 'creative power', 'literally creates']
+    }],
+    ['being and doing integration', {
+        category: 'advanced',
+        content: 'Integrity integrates being and doing. It\'s not enough to do the right things - your being must be aligned with your doing. When being and doing are integrated through integrity, you become a source of power and possibility for others.',
+        keywords: ['being and doing', 'integration', 'aligned', 'source of power', 'possibility for others']
+    }],
+    ['access to power', {
+        category: 'advanced',
+        content: 'Integrity provides access to power - not power over others, but power to create, power to make things happen, power to influence and inspire. This power comes from being whole and complete, which allows you to be a stand for others\' greatness.',
+        keywords: ['access to power', 'power to create', 'influence', 'inspire', 'whole and complete', 'stand for greatness']
+    }],
+    ['context and content', {
+        category: 'advanced',
+        content: 'Context is the framework within which content exists. Integrity creates a context of workability and possibility within which the content of life occurs. When the context is integrity, even challenges become opportunities for breakthrough.',
+        keywords: ['context', 'content', 'framework', 'workability', 'possibility', 'challenges become opportunities']
+    }],
+    ['transformation vs change', {
+        category: 'advanced',
+        content: 'Change is doing something different. Transformation is being different. Integrity work creates transformation - a fundamental shift in how people exist and relate to life. This transformation then naturally produces sustainable change in behavior.',
+        keywords: ['transformation', 'change', 'being different', 'fundamental shift', 'exist and relate', 'sustainable']
+    }],
+
+    // ========== PHILOSOPHICAL FOUNDATIONS ==========
+    ['ontological foundation', {
         category: 'philosophy',
-        content: 'Language is not just descriptive but generative - it creates our reality and shapes our possibilities. In integrity work, how we speak about our commitments literally creates the reality of our relationships and opportunities.',
-        keywords: ['language', 'generative', 'reality', 'possibilities']
+        content: 'The ontological foundation of integrity work is that how we are being determines what becomes possible. Being is not just an internal state - it\'s a way of existing that shapes reality. When you exist as integrity, life reorganizes around that way of being.',
+        keywords: ['ontological foundation', 'being determines', 'possible', 'way of existing', 'shapes reality', 'reorganizes']
+    }],
+    ['phenomenon vs concept', {
+        category: 'philosophy',
+        content: 'Integrity is a phenomenon you can experience, not just a concept you can understand. Most people relate to integrity as a concept (good vs bad) rather than as a phenomenon (whole vs broken). Accessing integrity as a phenomenon is transformational.',
+        keywords: ['phenomenon', 'concept', 'experience', 'understand', 'good vs bad', 'whole vs broken']
+    }],
+    ['wholeness paradigm', {
+        category: 'philosophy',
+        content: 'The paradigm shift from fragmentation to wholeness. Most people live in fragmentation - different parts of themselves pulling in different directions. Integrity creates wholeness - all parts aligned and working together toward what matters.',
+        keywords: ['wholeness paradigm', 'fragmentation', 'different parts', 'pulling directions', 'aligned', 'working together']
+    }],
+    ['causation model', {
+        category: 'philosophy',
+        content: 'Traditional thinking: circumstances cause our experience. Integrity thinking: our way of being in circumstances creates our experience. This shift in causation model empowers people to transform their experience by transforming their being.',
+        keywords: ['causation model', 'circumstances cause', 'way of being', 'creates experience', 'transform being']
     }]
 ]);
 
