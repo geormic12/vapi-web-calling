@@ -67,6 +67,7 @@ export const agentRegistry = {
         model: {
             model: "gpt-3.5-turbo",
             provider: "openai",
+            knowledgeBaseId: "13643ee2-571a-4be2-ba72-03cc6dd1c2ec",
             maxTokens: 250,
             temperature: 0.7,
             emotionRecognitionEnabled: true,

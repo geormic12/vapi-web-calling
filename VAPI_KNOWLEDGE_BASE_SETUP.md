@@ -2,13 +2,27 @@
 
 ## ✅ COMPLETED SETUP
 
-**Your knowledge base has been successfully created with the following details:**
+**Your knowledge base has been successfully configured with working content:**
 
-- **File ID:** `3f2f5f28-8e25-4599-bc8b-20a1c115b609`
+- **Working File ID:** `936b27b1-8b67-41a1-b0c9-afe636ee5743` (PDF, status: "done")
 - **Knowledge Base ID:** `13643ee2-571a-4be2-ba72-03cc6dd1c2ec`
 - **Status:** Active and integrated with Lisa
+- **File Size:** 1,045,518 bytes (PDF with 340,416 bytes parsed text)
+- **Last Updated:** 2025-09-21T06:01:09.519Z
 
-The configuration has been automatically updated in `src/lisa.js` and the project has been rebuilt.
+**FIXES APPLIED:**
+
+1. ✅ Added `knowledgeBaseId: "13643ee2-571a-4be2-ba72-03cc6dd1c2ec"` to Lisa's model configuration in `src/agent-registry.js`
+2. ✅ Updated knowledge base to use working file ID with "done" status instead of "failed" files
+3. ✅ Project rebuilt with all configurations active
+
+**ISSUE RESOLUTION:**
+
+- **Root Problem:** Previous markdown files were failing during VAPI processing (status: "failed")
+- **Solution:** Used existing working PDF file that was already successfully processed
+- **Configuration Fix:** Ensured knowledgeBaseId was properly configured in agent registry
+
+Lisa now has access to the knowledge base through the working file.
 
 ---
 
@@ -193,9 +207,20 @@ When the knowledge base is properly integrated:
 
 ### Integration Issues
 
-- Verify knowledgeBaseId is correctly set in lisa.js
+- Verify knowledgeBaseId is correctly set in the agent registry (not just lisa.js)
+- **CRITICAL:** Ensure the agent registry includes `knowledgeBaseId` in the model configuration
 - Check browser console for any JavaScript errors
 - Ensure npm run build completed successfully
+- Verify the agent is using `buildAssistantOptions()` from agent registry
+
+### Knowledge Base Not Accessible
+
+If the agent doesn't seem to access the knowledge base:
+
+1. **Check Agent Registry:** Ensure `knowledgeBaseId` is in the model configuration in `src/agent-registry.js`
+2. **Verify Build:** Run `npm run build` after making configuration changes
+3. **Check Console:** Look for errors in browser developer tools
+4. **Test Specific Terms:** Try asking about very specific concepts that are definitely in the knowledge base
 
 ### Testing Issues
 
