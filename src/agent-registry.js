@@ -1,5 +1,13 @@
 import { lisaSystemPrompt } from './lisa-prompt.js';
 import { brianaSystemPrompt } from './briana-prompt.js';
+import { bettySystemPrompt } from './betty-prompt.js';
+import { bartSystemPrompt } from './bart-prompt.js';
+import { luigiSystemPrompt } from './luigi-prompt.js';
+import { peterSystemPrompt } from './peter-prompt.js';
+import { debbieSystemPrompt } from './debbie-prompt.js';
+import { timSystemPrompt } from './tim-prompt.js';
+import { paulSystemPrompt } from './paul-prompt.js';
+import { fredSystemPrompt } from './fred-prompt.js';
 
 export const agentRegistry = {
     lisa: {
@@ -198,6 +206,558 @@ export const agentRegistry = {
             "hang",
             "function-call",
         ],
+        endCallPhrases: ["goodbye"],
+    },
+    betty: {
+        name: "Betty",
+        displayName: "Betty",
+        systemPrompt: bettySystemPrompt,
+        voice: {
+            voiceId: "sarah",
+            provider: "11labs",
+            stability: 0.5,
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Hello! I'm Betty, here to explore what you're being given by and contributing to. What would you like to discover?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: { type: "string", description: "Search query for contribution concepts" },
+                        category: { type: "string", description: "Category to search in (optional)" }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Betty's knowledge base for contribution and calling insights"
+            },
+            {
+                name: "ExploreContribution",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        context: { type: "string", description: "Context or situation to explore" }
+                    },
+                    required: ["context"]
+                },
+                description: "Explore contribution patterns and possibilities"
+            },
+            {
+                name: "DistinguishCommitment",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        area: { type: "string", description: "Area of life to examine commitment" }
+                    },
+                    required: ["area"]
+                },
+                description: "Distinguish authentic commitment from expectation"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250,
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [],
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        endCallPhrases: ["goodbye"],
+    },
+    bart: {
+        name: "Bart",
+        displayName: "Bart",
+        systemPrompt: bartSystemPrompt,
+        voice: {
+            voiceId: "sarah",
+            provider: "11labs",
+            stability: 0.5,
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Hi! I'm Bart, your guide for being cause in the matter. Where would you like to take ownership?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: { type: "string", description: "Search query for ownership and cause concepts" },
+                        category: { type: "string", description: "Category to search in (optional)" }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Bart's knowledge base for ownership and causation insights"
+            },
+            {
+                name: "AnalyzeCauseAndEffect",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        situation: { type: "string", description: "Situation to analyze" }
+                    },
+                    required: ["situation"]
+                },
+                description: "Analyze cause and effect patterns in situations"
+            },
+            {
+                name: "IdentifyVictimPatterns",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        context: { type: "string", description: "Context to examine for victim patterns" }
+                    },
+                    required: ["context"]
+                },
+                description: "Identify victim consciousness patterns and transform them"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250,
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [],
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        endCallPhrases: ["goodbye"],
+    },
+    luigi: {
+        name: "Luigi",
+        displayName: "Luigi",
+        systemPrompt: luigiSystemPrompt,
+        voice: {
+            voiceId: "sarah",
+            provider: "11labs",
+            stability: 0.5,
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Ciao! I'm Luigi, here to explore the power of language. What would you like to examine linguistically?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: { type: "string", description: "Search query for linguistic concepts" },
+                        category: { type: "string", description: "Category to search in (optional)" }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Luigi's knowledge base for linguistic insights"
+            },
+            {
+                name: "AnalyzeLanguagePatterns",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        text: { type: "string", description: "Text to analyze for language patterns" }
+                    },
+                    required: ["text"]
+                },
+                description: "Analyze language patterns for empowerment or limitation"
+            },
+            {
+                name: "TransformLimitingLanguage",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        statement: { type: "string", description: "Statement to transform" }
+                    },
+                    required: ["statement"]
+                },
+                description: "Transform limiting language into empowering language"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250,
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [],
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        endCallPhrases: ["goodbye"],
+    },
+    peter: {
+        name: "Peter",
+        displayName: "Peter",
+        systemPrompt: peterSystemPrompt,
+        voice: {
+            voiceId: "sarah",
+            provider: "11labs",
+            stability: 0.5,
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Hello! I'm Peter, here to distinguish phenomena from interpretations. What would you like to examine?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: { type: "string", description: "Search query for phenomena concepts" },
+                        category: { type: "string", description: "Category to search in (optional)" }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Peter's knowledge base for phenomenological insights"
+            },
+            {
+                name: "DistinguishPhenomena",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        observation: { type: "string", description: "Observation to analyze" }
+                    },
+                    required: ["observation"]
+                },
+                description: "Distinguish pure phenomena from interpretations and stories"
+            },
+            {
+                name: "IdentifyStories",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        situation: { type: "string", description: "Situation to examine for stories" }
+                    },
+                    required: ["situation"]
+                },
+                description: "Identify stories and interpretations overlaid on phenomena"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250,
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [],
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        endCallPhrases: ["goodbye"],
+    },
+    debbie: {
+        name: "Debbie",
+        displayName: "Debbie",
+        systemPrompt: debbieSystemPrompt,
+        voice: {
+            voiceId: "sarah",
+            provider: "11labs",
+            stability: 0.5,
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Hi! I'm Debbie, here to explore domains and distinctions. What domain would you like to examine?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: { type: "string", description: "Search query for domain concepts" },
+                        category: { type: "string", description: "Category to search in (optional)" }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Debbie's knowledge base for domain insights"
+            },
+            {
+                name: "ExploreDomainDistinctions",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        context: { type: "string", description: "Context to explore domain distinctions" }
+                    },
+                    required: ["context"]
+                },
+                description: "Explore domain distinctions and boundaries"
+            },
+            {
+                name: "IdentifyDomainConflicts",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        situation: { type: "string", description: "Situation to examine for domain conflicts" }
+                    },
+                    required: ["situation"]
+                },
+                description: "Identify conflicts between different domains"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250,
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [],
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        endCallPhrases: ["goodbye"],
+    },
+    tim: {
+        name: "Tim",
+        displayName: "Tim",
+        systemPrompt: timSystemPrompt,
+        voice: {
+            voiceId: "sarah",
+            provider: "11labs",
+            stability: 0.5,
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Hello! I'm Tim, here to help synthesize terms and clarify language. What would you like to explore?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: { type: "string", description: "Search query for synthesis concepts" },
+                        category: { type: "string", description: "Category to search in (optional)" }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Tim's knowledge base for synthesis insights"
+            },
+            {
+                name: "ExploreTermSynthesis",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        context: { type: "string", description: "Context for term synthesis" }
+                    },
+                    required: ["context"]
+                },
+                description: "Explore synthesis of terms and concepts"
+            },
+            {
+                name: "IdentifyTermClarity",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        terms: { type: "string", description: "Terms to clarify" }
+                    },
+                    required: ["terms"]
+                },
+                description: "Identify clarity in terms and language"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250,
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [],
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        endCallPhrases: ["goodbye"],
+    },
+    paul: {
+        name: "Paul",
+        displayName: "Paul",
+        systemPrompt: paulSystemPrompt,
+        voice: {
+            voiceId: "sarah",
+            provider: "11labs",
+            stability: 0.5,
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Hello! I'm Paul, here to explore perceptual constraints and expand what's possible. What would you like to examine?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: { type: "string", description: "Search query for perceptual concepts" },
+                        category: { type: "string", description: "Category to search in (optional)" }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Paul's knowledge base for perceptual insights"
+            },
+            {
+                name: "ExplorePerceptualConstraints",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        context: { type: "string", description: "Context to explore perceptual constraints" }
+                    },
+                    required: ["context"]
+                },
+                description: "Explore perceptual constraints and limitations"
+            },
+            {
+                name: "ShiftPerspective",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        situation: { type: "string", description: "Situation requiring perspective shift" }
+                    },
+                    required: ["situation"]
+                },
+                description: "Facilitate perspective shifts and expanded perception"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250,
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [],
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        endCallPhrases: ["goodbye"],
+    },
+    fred: {
+        name: "Fred",
+        displayName: "Fred",
+        systemPrompt: fredSystemPrompt,
+        voice: {
+            voiceId: "sarah",
+            provider: "11labs",
+            stability: 0.5,
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Hello! I'm Fred, here to explore frameworks and methodologies. What would you like to work with?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: { type: "string", description: "Search query for framework concepts" },
+                        category: { type: "string", description: "Category to search in (optional)" }
+                    },
+                    required: ["query"]
+                },
+                description: "Search Fred's knowledge base for framework insights"
+            },
+            {
+                name: "ExploreFrameworks",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        context: { type: "string", description: "Context for framework exploration" }
+                    },
+                    required: ["context"]
+                },
+                description: "Explore applicable frameworks and methodologies"
+            },
+            {
+                name: "ApplyEstMethodology",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        situation: { type: "string", description: "Situation to apply est methodology" }
+                    },
+                    required: ["situation"]
+                },
+                description: "Apply est methodology to specific situations"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250,
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [],
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
         endCallPhrases: ["goodbye"],
     }
     // Add more agents here as needed

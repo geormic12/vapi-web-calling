@@ -1,11 +1,27 @@
 import { LisaFunctionHandler } from './lisa-functions.js';
 import { BrianaFunctionHandler } from './briana-functions.js';
+import { BettyFunctionHandler } from './betty-functions.js';
+import { BartFunctionHandler } from './bart-functions.js';
+import { LuigiFunctionHandler } from './luigi-functions.js';
+import { PeterFunctionHandler } from './peter-functions.js';
+import { DebbieFunctionHandler } from './debbie-functions.js';
+import { TimFunctionHandler } from './tim-functions.js';
+import { PaulFunctionHandler } from './paul-functions.js';
+import { FredFunctionHandler } from './fred-functions.js';
 
 export class FunctionHandlerRegistry {
     constructor() {
         this.handlers = new Map([
             ['lisa', new LisaFunctionHandler()],
             ['briana', new BrianaFunctionHandler()],
+            ['betty', new BettyFunctionHandler()],
+            ['bart', new BartFunctionHandler()],
+            ['luigi', new LuigiFunctionHandler()],
+            ['peter', new PeterFunctionHandler()],
+            ['debbie', new DebbieFunctionHandler()],
+            ['tim', new TimFunctionHandler()],
+            ['paul', new PaulFunctionHandler()],
+            ['fred', new FredFunctionHandler()],
             // Add more handlers as agents are added
         ]);
     }
