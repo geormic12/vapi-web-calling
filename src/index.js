@@ -105,7 +105,7 @@ class VapiCallManager {
     this.volumeLevel = 0;
     this.callEndedNaturally = true; // Mark that call ended through proper channel
     this.processedToolCalls.clear(); // Clear processed tool calls for next call
-    
+
     // Clear the pulsing animation from the active button
     if (this.currentAgent) {
       const button = document.getElementById(`callWith${agentRegistry[this.currentAgent].name}`);
@@ -113,7 +113,7 @@ class VapiCallManager {
         button.style.boxShadow = '';
       }
     }
-    
+
     this.currentAgent = null;
     this.updateUI();
     this.updateUIForCall(false);
@@ -273,7 +273,7 @@ class VapiCallManager {
 
     console.error("Vapi error:", error);
     this.connected = false;
-    
+
     // Clear the pulsing animation on error as well
     if (this.currentAgent) {
       const button = document.getElementById(`callWith${agentRegistry[this.currentAgent].name}`);

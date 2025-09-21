@@ -4,7 +4,7 @@ export const agentRegistry = {
     lisa: {
         name: "Lisa",
         displayName: "Lisa",
-        systemPrompt: lisaSystemPrompt2,
+        systemPrompt: lisaSystemPrompt,
         voice: {
             voiceId: "sarah",
             provider: "11labs",
