@@ -431,18 +431,18 @@ class VapiCallManager {
 
   getStatementFocusMessage(statementType) {
     const messages = {
-      causation: "I want to work on Being Cause in the Matter - taking full ownership and responsibility for my outcomes instead of being at the effect of circumstances.",
-      commitment: "I want to work on Being Given By Something Greater - exploring my purpose, calling, and service to something beyond myself.",
-      integrity: "I want to work on my integrity - aligning my actions with my values and being whole and complete.",
-      authenticity: "I want to work on my authenticity - being true to myself and expressing who I really am."
+      causation: "I want to work on being caused in the matter statement",
+      commitment: "I want to work on being given by something greater statement",
+      integrity: "I want to work on the integrity statement",
+      authenticity: "I want to work on the authenticity statement"
     };
     return messages[statementType] || "I want to work on this area of personal development.";
   }
 
   getStatementDisplayName(statementType) {
     const names = {
-      causation: "Being Cause In The Matter",
-      commitment: "Being Given By Something Greater",
+      causation: "Being Caused In The Matter Statement",
+      commitment: "Being Given By Something Greater Statement",
       integrity: "Integrity Statement",
       authenticity: "Authenticity Statement"
     };

@@ -99,21 +99,6 @@ export class MichaelFunctionHandler {
                     card.style.transform = '';
                 }, 3000);
             }
-
-            // If the statement is empty, add a placeholder message
-            if (statementElement.textContent.trim() === '' ||
-                statementElement.textContent.includes('Your statement will appear here')) {
-                const placeholders = {
-                    causation: "Ready to explore taking full ownership and being cause in the matter...",
-                    commitment: "Ready to explore being given by something greater than yourself...",
-                    integrity: "Ready to explore integrity and alignment with your values...",
-                    authenticity: "Ready to explore authenticity and being true to yourself..."
-                };
-
-                statementElement.textContent = placeholders[statementType] || "Ready to explore this area...";
-                statementElement.style.fontStyle = 'italic';
-                statementElement.style.color = '#666';
-            }
         }
 
         // Create a response based on the statement type
