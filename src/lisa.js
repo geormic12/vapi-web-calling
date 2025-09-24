@@ -54,7 +54,7 @@ export const lisaOptions = {
         emotionRecognitionEnabled: true,
     },
     recordingEnabled: true,
-    firstMessage: "Hello, I'm Lisa, your integrity coach. How can I support you in creating more workability and alignment in your life?",
+    firstMessage: "Hello, I'm Lisa.",
     voicemailMessage:
         "You've reached Lisa's voicemail. Please leave a message about what you'd like to explore regarding integrity or personal development, and I'll get back to you.",
     endCallFunctionEnabled: false,

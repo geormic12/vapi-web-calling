@@ -8,6 +8,7 @@ import { debbieSystemPrompt } from './debbie-prompt.js';
 import { timSystemPrompt } from './tim-prompt.js';
 import { paulSystemPrompt } from './paul-prompt.js';
 import { fredSystemPrompt } from './fred-prompt.js';
+import { michaelSystemPrompt } from './michael-prompt.js';
 
 export const agentRegistry = {
     lisa: {
@@ -759,6 +760,88 @@ export const agentRegistry = {
         clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
         serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
         endCallPhrases: ["goodbye"],
+    },
+
+    michael: {
+        name: "Michael",
+        displayName: "Michael",
+        systemPrompt: michaelSystemPrompt,
+        voice: {
+            voiceId: "sarah", // Using same voice as other working agents
+            provider: "11labs",
+            stability: 0.5, // Using same settings as other working agents
+            similarityBoost: 0.75,
+        },
+        firstMessage: "Hello! I'm Michael, your personal development assistant. I'm here to help you explore and develop your integrity and authenticity. What would you like to work on today?",
+        buttonClass: "call-button",
+        iconClass: "microphone-icon",
+        functions: [
+            {
+                name: "UpdateIntegrityStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        statement: {
+                            type: "string",
+                            description: "The user's integrity statement to update on the page"
+                        }
+                    },
+                    required: ["statement"]
+                },
+                description: "Updates the user's integrity statement on the page with their new insights"
+            },
+            {
+                name: "UpdateAuthenticityStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        statement: {
+                            type: "string",
+                            description: "The user's authenticity statement to update on the page"
+                        }
+                    },
+                    required: ["statement"]
+                },
+                description: "Updates the user's authenticity statement on the page with their new insights"
+            },
+            {
+                name: "SearchKnowledgeBase",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        query: {
+                            type: "string",
+                            description: "Search query for integrity or authenticity concepts"
+                        },
+                        category: {
+                            type: "string",
+                            description: "Category to search in (integrity, authenticity, integration, application)"
+                        }
+                    },
+                    required: ["query"]
+                },
+                description: "Search knowledge base for information about integrity and authenticity concepts"
+            }
+        ],
+        model: {
+            model: "gpt-3.5-turbo",
+            provider: "openai",
+            maxTokens: 250, // Using same as other agents
+            temperature: 0.7,
+            emotionRecognitionEnabled: true,
+        },
+        transcriber: {
+            model: "nova-2",
+            keywords: [], // Removing custom keywords for now
+            language: "en",
+            provider: "deepgram",
+        },
+        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        endCallPhrases: ["goodbye"], // Simplified end call phrases
     }
     // Add more agents here as needed
 };

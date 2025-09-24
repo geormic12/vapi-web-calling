@@ -8,6 +8,7 @@ import { DebbieFunctionHandler } from './debbie-functions.js';
 import { TimFunctionHandler } from './tim-functions.js';
 import { PaulFunctionHandler } from './paul-functions.js';
 import { FredFunctionHandler } from './fred-functions.js';
+import { MichaelFunctionHandler } from './michael-functions.js';
 
 export class FunctionHandlerRegistry {
     constructor() {
@@ -22,6 +23,7 @@ export class FunctionHandlerRegistry {
             ['tim', new TimFunctionHandler()],
             ['paul', new PaulFunctionHandler()],
             ['fred', new FredFunctionHandler()],
+            ['michael', new MichaelFunctionHandler()],
             // Add more handlers as agents are added
         ]);
     }

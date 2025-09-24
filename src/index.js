@@ -35,12 +35,22 @@ class VapiCallManager {
       return;
     }
 
-    container.innerHTML = createAgentsGrid(agentRegistry);
-    this.attachAgentListeners();
+    // Check if we're on the refined page by looking for the integrity/authenticity statements
+    const isRefinedPage = document.getElementById('integrityStatement') && document.getElementById('authenticityStatement');
+
+    let agentsToRender = agentRegistry;
+    if (isRefinedPage) {
+      // Only render Michael on the refined page
+      agentsToRender = { michael: agentRegistry.michael };
+      console.log('Detected refined page - rendering only Michael agent');
+    }
+
+    container.innerHTML = createAgentsGrid(agentsToRender);
+    this.attachAgentListeners(agentsToRender);
   }
 
-  attachAgentListeners() {
-    attachAgentListeners(agentRegistry, this);
+  attachAgentListeners(agentsToRender = agentRegistry) {
+    attachAgentListeners(agentsToRender, this);
   }
 
   async handleAgentCall(agentId) {
@@ -62,6 +72,14 @@ class VapiCallManager {
   async startCall(agentConfig) {
     const assistantOptions = buildAssistantOptions(agentConfig);
 
+    // Debug logging for call initialization
+    console.log("🚀 STARTING CALL DEBUG INFO:", {
+      agentName: agentConfig.displayName,
+      agentId: agentConfig.name,
+      assistantOptions: assistantOptions,
+      timestamp: new Date().toISOString()
+    });
+
     // Show loading state with helpful message
     this.updateUIForCall(true);
     const instructionsElement = document.getElementById('instructions');
@@ -70,10 +88,12 @@ class VapiCallManager {
     }
 
     try {
+      console.log("📞 Attempting to start Vapi call...");
       this.currentCall = await this.vapi.start(assistantOptions);
-      console.log(`Started call with ${agentConfig.displayName}`);
+      console.log(`✅ Started call with ${agentConfig.displayName}`, this.currentCall);
     } catch (error) {
-      console.error("Call failed:", error);
+      console.error("❌ Call failed during start:", error);
+      console.error("Full error object:", JSON.stringify(error, null, 2));
       this.handleError(error);
       this.currentAgent = null;
       this.currentCall = null;
@@ -89,6 +109,15 @@ class VapiCallManager {
     this.vapi.on("message", (message) => this.handleMessage(message));
     this.vapi.on("volume-level", (level) => this.handleVolumeLevel(level));
     this.vapi.on("error", (error) => this.handleError(error));
+    
+    // Add additional debugging for call lifecycle
+    this.vapi.on("call-start", () => {
+      console.log("🎉 CALL-START event fired");
+    });
+    
+    this.vapi.on("call-end", () => {
+      console.log("🛑 CALL-END event fired");
+    });
   }
 
   handleCallStart() {
