@@ -91,10 +91,7 @@
       }
 
       .agent-name {
-        margin-top: 20px;
-        color: #2c3e50;
-        font-size: 1.5em;
-        margin-bottom: 5px;
+        display: none;
       }
 
       .foundation-container {
@@ -500,10 +497,25 @@
   </head>
   <body>
     <div class="container">
-      <h1>Michael</h1>
-      <p class="subtitle">
-        Your Personal Development Assistant for Integrity & Authenticity
-      </p>
+      <h1>
+        <input
+          type="text"
+          id="titleInput"
+          value="Michael"
+          style="
+            background: transparent;
+            border: none;
+            font-size: inherit;
+            font-weight: inherit;
+            font-family: inherit;
+            text-align: center;
+            color: inherit;
+            width: 100%;
+            outline: none;
+          "
+          placeholder="Enter title..."
+        />
+      </h1>
 
       <div class="status-bar">
         <div class="status-item">
@@ -514,22 +526,18 @@
           <span>🎤</span>
           <span id="speaker">Speaker: none</span>
         </div>
-        <div class="status-item">
-          <span>🔊</span>
-          <span id="volume">Volume: 0</span>
-        </div>
       </div>
 
       <div class="agent-section">
         <div id="agents-container" class="agents-grid"></div>
       </div>
 
+      <p class="subtitle">Your Personal Assistant For Creating a New World</p>
+
       <div class="foundation-container">
         <div class="foundation-header">
           <h2>Foundation</h2>
-          <p class="foundation-subtitle">
-            Your Core Personal Development Areas
-          </p>
+          <p class="foundation-subtitle">Establishing your power to create</p>
         </div>
 
         <div class="statements-section">
@@ -538,7 +546,9 @@
               <span class="icon">💎</span>
               Integrity Statement
             </h3>
-            <div id="integrityStatement" class="statement-content"></div>
+            <div id="integrityStatement" class="statement-content">
+              Being whole and complete by honoring your word
+            </div>
           </div>
 
           <div class="statement-card authenticity-card">
@@ -546,7 +556,9 @@
               <span class="icon">🌟</span>
               Authenticity Statement
             </h3>
-            <div id="authenticityStatement" class="statement-content"></div>
+            <div id="authenticityStatement" class="statement-content">
+              Being real and straight with yourself and others
+            </div>
           </div>
 
           <div class="statement-card commitment-card">
@@ -554,7 +566,9 @@
               <span class="icon">🎯</span>
               Being Given By Something Greater
             </h3>
-            <div id="commitmentStatement" class="statement-content"></div>
+            <div id="commitmentStatement" class="statement-content">
+              Acting from a mighty purpose beyond your own personal concerns
+            </div>
           </div>
 
           <div class="statement-card causation-card">
@@ -562,7 +576,10 @@
               <span class="icon">⚡</span>
               Being Cause In The Matter
             </h3>
-            <div id="causationStatement" class="statement-content"></div>
+            <div id="causationStatement" class="statement-content">
+              Taking a stand that you are the source of your life, not a victim
+              of it
+            </div>
           </div>
         </div>
       </div>
@@ -570,16 +587,20 @@
       <div class="contextual-framework-container">
         <div class="contextual-framework-header">
           <h2>The Contextual Framework</h2>
-          <p class="contextual-framework-subtitle">Structure & Content of Your New World</p>
+          <p class="contextual-framework-subtitle">
+            Create a Context that Uses You
+          </p>
         </div>
-        
+
         <div class="framework-section">
           <div class="framework-card linguistic-card">
             <h3>
               <span class="icon">🗣️</span>
               Linguistic Abstractions
             </h3>
-            <div id="linguisticStatement" class="framework-content">Creating unlimited possibility free from past constraints</div>
+            <div id="linguisticStatement" class="framework-content">
+              Creating unlimited possibility free from past constraints
+            </div>
           </div>
 
           <div class="framework-card phenomena-card">
@@ -587,7 +608,9 @@
               <span class="icon">✨</span>
               Phenomena
             </h3>
-            <div id="phenomenaStatement" class="framework-content">Your direct "as-lived" experience of new possibilities</div>
+            <div id="phenomenaStatement" class="framework-content">
+              Your direct "as-lived" experience of new possibilities
+            </div>
           </div>
 
           <div class="framework-card domain-card">
@@ -595,7 +618,9 @@
               <span class="icon">🌍</span>
               Domain
             </h3>
-            <div id="domainStatement" class="framework-content">The sphere of activity where your context applies</div>
+            <div id="domainStatement" class="framework-content">
+              The sphere of activity where your context applies
+            </div>
           </div>
 
           <div class="framework-card term-card">
@@ -603,21 +628,14 @@
               <span class="icon">📝</span>
               Term
             </h3>
-            <div id="termStatement" class="framework-content">Synthesized definition bringing your new world into being</div>
+            <div id="termStatement" class="framework-content">
+              Synthesized definition bringing your new world into being
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="instructions">
-        Click the microphone to start a conversation with Michael. Share your
-        thoughts about integrity, authenticity, commitment, and causation, and
-        watch as your personal statements develop and evolve.
-        <br /><br />
-        <small style="color: #999; font-size: 0.8em">
-          Test highlights: Ctrl/Cmd + 1-4 (1=Integrity, 2=Authenticity,
-          3=Commitment, 4=Causation)
-        </small>
-      </div>
+      <div class="instructions"></div>
     </div>
 
     <div id="chat" class="chat-window">
