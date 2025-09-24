@@ -31,7 +31,6 @@ class VapiCallManager {
   renderAgents() {
     const container = document.getElementById('agents-container');
     if (!container) {
-      console.log('No agents-container found - this is expected for Framework-with-Agents.html');
       return;
     }
 
@@ -42,7 +41,6 @@ class VapiCallManager {
     if (isRefinedPage) {
       // Only render Michael on the refined page
       agentsToRender = { michael: agentRegistry.michael };
-      console.log('Detected refined page - rendering only Michael agent');
     }
 
     container.innerHTML = createAgentsGrid(agentsToRender);
@@ -72,14 +70,6 @@ class VapiCallManager {
   async startCall(agentConfig) {
     const assistantOptions = buildAssistantOptions(agentConfig);
 
-    // Debug logging for call initialization
-    console.log("🚀 STARTING CALL DEBUG INFO:", {
-      agentName: agentConfig.displayName,
-      agentId: agentConfig.name,
-      assistantOptions: assistantOptions,
-      timestamp: new Date().toISOString()
-    });
-
     // Show loading state with helpful message
     this.updateUIForCall(true);
     const instructionsElement = document.getElementById('instructions');
@@ -88,12 +78,10 @@ class VapiCallManager {
     }
 
     try {
-      console.log("📞 Attempting to start Vapi call...");
       this.currentCall = await this.vapi.start(assistantOptions);
-      console.log(`✅ Started call with ${agentConfig.displayName}`, this.currentCall);
+      console.log(`Started call with ${agentConfig.displayName}`);
     } catch (error) {
-      console.error("❌ Call failed during start:", error);
-      console.error("Full error object:", JSON.stringify(error, null, 2));
+      console.error("Call failed:", error);
       this.handleError(error);
       this.currentAgent = null;
       this.currentCall = null;
@@ -109,15 +97,6 @@ class VapiCallManager {
     this.vapi.on("message", (message) => this.handleMessage(message));
     this.vapi.on("volume-level", (level) => this.handleVolumeLevel(level));
     this.vapi.on("error", (error) => this.handleError(error));
-    
-    // Add additional debugging for call lifecycle
-    this.vapi.on("call-start", () => {
-      console.log("🎉 CALL-START event fired");
-    });
-    
-    this.vapi.on("call-end", () => {
-      console.log("🛑 CALL-END event fired");
-    });
   }
 
   handleCallStart() {
@@ -155,35 +134,28 @@ class VapiCallManager {
   }
 
   handleSpeechStart() {
-    console.log("Assistant started speaking");
     this.assistantIsSpeaking = true;
     this.updateUI();
   }
 
   handleSpeechEnd() {
-    console.log("Assistant stopped speaking");
     this.assistantIsSpeaking = false;
     this.updateUI();
   }
 
   handleMessage(message) {
-    console.log("Message received:", message);
-
     // Check for tool calls in conversation-update messages
     if (message.type === "conversation-update") {
       // Look for tool calls in the conversation
       if (message.conversation) {
         message.conversation.forEach((msg) => {
           if (msg.tool_calls && msg.tool_calls.length > 0) {
-            console.log("Found tool_calls:", msg.tool_calls);
-
             msg.tool_calls.forEach((toolCall) => {
               // Create a unique identifier for this tool call
               const toolCallId = toolCall.id || `${toolCall.function?.name}-${JSON.stringify(toolCall.function?.arguments)}-${msg.timestamp || Date.now()}`;
 
               // Skip if we've already processed this tool call
               if (this.processedToolCalls.has(toolCallId)) {
-                console.log("Skipping already processed tool call:", toolCallId);
                 return;
               }
 
@@ -195,8 +167,6 @@ class VapiCallManager {
                 name: toolCall.function?.name,
                 parameters: toolCall.function?.arguments ? JSON.parse(toolCall.function.arguments) : {}
               };
-
-              console.log("Executing function:", functionCall.name, "with parameters:", functionCall.parameters);
 
               if (this.currentAgent && functionCall.name) {
                 this.handleFunctionCall(functionCall);
@@ -211,7 +181,6 @@ class VapiCallManager {
 
     // Keep the original function-call handler as backup
     if (message.type === "function-call" && this.currentAgent) {
-      console.log("Direct function-call message received");
       this.handleFunctionCall(message.functionCall);
     }
   }
@@ -235,25 +204,11 @@ class VapiCallManager {
 
   handleFunctionCall(functionCall) {
     if (!this.currentAgent) {
-      console.warn("⚠️ Function call received but no current agent");
+      console.warn("Function call received but no current agent");
       return;
     }
 
-    console.log(`🚀 FUNCTION CALL EXECUTION:`, {
-      functionName: functionCall.name,
-      agent: this.currentAgent,
-      parameters: functionCall.parameters,
-      timestamp: new Date().toISOString()
-    });
-
-    // Special logging for knowledge base access
-    if (functionCall.name === 'SearchIntegrityKnowledgeBase') {
-      console.log(`📚 LISA KNOWLEDGE BASE ACCESS DETECTED!`, {
-        query: functionCall.parameters?.query,
-        category: functionCall.parameters?.category,
-        agent: this.currentAgent
-      });
-    }
+    console.log(`Function called: ${functionCall.name} by ${this.currentAgent}`);
 
     const result = this.functionHandlers.handleFunctionCall(
       this.currentAgent,
@@ -261,29 +216,9 @@ class VapiCallManager {
     );
 
     if (result) {
-      console.log(`✅ FUNCTION EXECUTED SUCCESSFULLY:`, {
-        functionName: functionCall.name,
-        agent: this.currentAgent,
-        resultMessage: result.message || 'Function completed',
-        resultData: result,
-        timestamp: new Date().toISOString()
-      });
-
-      // Additional logging for knowledge base results
-      if (functionCall.name === 'SearchIntegrityKnowledgeBase' && result.results) {
-        console.log(`📖 KNOWLEDGE BASE RESULTS:`, {
-          totalResults: result.totalResults,
-          returnedResults: result.results.length,
-          query: result.query,
-          results: result.results.map(r => ({ key: r.key, relevance: r.relevanceScore }))
-        });
-      }
+      console.log(`Function ${functionCall.name} executed successfully`);
     } else {
-      console.warn(`❌ FUNCTION EXECUTION FAILED:`, {
-        functionName: functionCall.name,
-        agent: this.currentAgent,
-        timestamp: new Date().toISOString()
-      });
+      console.warn(`Function ${functionCall.name} execution failed`);
     }
   }
 
