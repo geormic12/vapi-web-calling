@@ -31,7 +31,7 @@ class VapiCallManager {
   renderAgents() {
     const container = document.getElementById('agents-container');
     if (!container) {
-      console.warn('No agents-container found in DOM');
+      console.log('No agents-container found - this is expected for Framework-with-Agents.html');
       return;
     }
 
@@ -372,5 +372,7 @@ class VapiCallManager {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  new VapiCallManager();
+  const callManager = new VapiCallManager();
+  // Expose globally for Framework-with-Agents.html
+  window.vapiCallManager = callManager;
 });
