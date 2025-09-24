@@ -97,11 +97,128 @@
         margin-bottom: 5px;
       }
 
+      .foundation-container {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 20px;
+        padding: 30px;
+        margin-top: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        border: 2px solid rgba(102, 126, 234, 0.1);
+        position: relative;
+      }
+
+      .foundation-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .foundation-header h2 {
+        color: #2c3e50;
+        font-size: 2.2em;
+        font-weight: 400;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+
+      .foundation-subtitle {
+        color: #6c757d;
+        font-size: 1.1em;
+        font-style: italic;
+        margin: 0;
+      }
+
       .statements-section {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 20px;
-        margin-top: 40px;
+      }
+
+      .contextual-framework-container {
+        background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%);
+        border-radius: 20px;
+        padding: 30px;
+        margin-top: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        border: 2px solid rgba(52, 152, 219, 0.1);
+        position: relative;
+      }
+
+      .contextual-framework-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .contextual-framework-header h2 {
+        color: #2c3e50;
+        font-size: 2.2em;
+        font-weight: 400;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+
+      .contextual-framework-subtitle {
+        color: #6c757d;
+        font-size: 1.1em;
+        font-style: italic;
+        margin: 0;
+      }
+
+      .framework-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+      }
+
+      .framework-card {
+        background: #f1f8ff;
+        border-radius: 15px;
+        padding: 25px;
+        border: 1px solid #bee5eb;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .framework-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-color: #3498db;
+      }
+
+      .framework-card h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .framework-content {
+        min-height: 80px;
+        padding: 15px;
+        background: white;
+        border-radius: 10px;
+        border: 1px dashed #3498db;
+        font-style: italic;
+        color: #495057;
+        line-height: 1.6;
+        font-size: 0.95em;
+      }
+
+      .linguistic-card h3 .icon {
+        color: #e74c3c;
+      }
+
+      .phenomena-card h3 .icon {
+        color: #f39c12;
+      }
+
+      .domain-card h3 .icon {
+        color: #27ae60;
+      }
+
+      .term-card h3 .icon {
+        color: #8e44ad;
       }
 
       .statement-card {
@@ -315,10 +432,30 @@
           grid-template-columns: 1fr 1fr;
           gap: 20px;
         }
+
+        .framework-section {
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+
+        .foundation-container,
+        .contextual-framework-container {
+          padding: 25px;
+        }
+
+        .foundation-header h2,
+        .contextual-framework-header h2 {
+          font-size: 1.8em;
+        }
       }
 
       @media (max-width: 768px) {
         .statements-section {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .framework-section {
           grid-template-columns: 1fr;
           gap: 20px;
         }
@@ -341,6 +478,22 @@
           width: calc(100vw - 40px);
           right: 20px;
           left: 20px;
+        }
+
+        .foundation-container,
+        .contextual-framework-container {
+          padding: 20px;
+          margin-top: 30px;
+        }
+
+        .foundation-header h2,
+        .contextual-framework-header h2 {
+          font-size: 1.6em;
+        }
+
+        .foundation-subtitle,
+        .contextual-framework-subtitle {
+          font-size: 1em;
         }
       }
     </style>
@@ -371,37 +524,87 @@
         <div id="agents-container" class="agents-grid"></div>
       </div>
 
-      <div class="statements-section">
-        <div class="statement-card integrity-card">
-          <h3>
-            <span class="icon">💎</span>
-            Integrity Statement
-          </h3>
-          <div id="integrityStatement" class="statement-content"></div>
+      <div class="foundation-container">
+        <div class="foundation-header">
+          <h2>Foundation</h2>
+          <p class="foundation-subtitle">
+            Your Core Personal Development Areas
+          </p>
         </div>
 
-        <div class="statement-card authenticity-card">
-          <h3>
-            <span class="icon">🌟</span>
-            Authenticity Statement
-          </h3>
-          <div id="authenticityStatement" class="statement-content"></div>
-        </div>
+        <div class="statements-section">
+          <div class="statement-card integrity-card">
+            <h3>
+              <span class="icon">💎</span>
+              Integrity Statement
+            </h3>
+            <div id="integrityStatement" class="statement-content"></div>
+          </div>
 
-        <div class="statement-card commitment-card">
-          <h3>
-            <span class="icon">🎯</span>
-            Being Given By Something Greater
-          </h3>
-          <div id="commitmentStatement" class="statement-content"></div>
-        </div>
+          <div class="statement-card authenticity-card">
+            <h3>
+              <span class="icon">🌟</span>
+              Authenticity Statement
+            </h3>
+            <div id="authenticityStatement" class="statement-content"></div>
+          </div>
 
-        <div class="statement-card causation-card">
-          <h3>
-            <span class="icon">⚡</span>
-            Being Cause In The Matter
-          </h3>
-          <div id="causationStatement" class="statement-content"></div>
+          <div class="statement-card commitment-card">
+            <h3>
+              <span class="icon">🎯</span>
+              Being Given By Something Greater
+            </h3>
+            <div id="commitmentStatement" class="statement-content"></div>
+          </div>
+
+          <div class="statement-card causation-card">
+            <h3>
+              <span class="icon">⚡</span>
+              Being Cause In The Matter
+            </h3>
+            <div id="causationStatement" class="statement-content"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contextual-framework-container">
+        <div class="contextual-framework-header">
+          <h2>The Contextual Framework</h2>
+          <p class="contextual-framework-subtitle">Structure & Content of Your New World</p>
+        </div>
+        
+        <div class="framework-section">
+          <div class="framework-card linguistic-card">
+            <h3>
+              <span class="icon">🗣️</span>
+              Linguistic Abstractions
+            </h3>
+            <div id="linguisticStatement" class="framework-content">Creating unlimited possibility free from past constraints</div>
+          </div>
+
+          <div class="framework-card phenomena-card">
+            <h3>
+              <span class="icon">✨</span>
+              Phenomena
+            </h3>
+            <div id="phenomenaStatement" class="framework-content">Your direct "as-lived" experience of new possibilities</div>
+          </div>
+
+          <div class="framework-card domain-card">
+            <h3>
+              <span class="icon">🌍</span>
+              Domain
+            </h3>
+            <div id="domainStatement" class="framework-content">The sphere of activity where your context applies</div>
+          </div>
+
+          <div class="framework-card term-card">
+            <h3>
+              <span class="icon">📝</span>
+              Term
+            </h3>
+            <div id="termStatement" class="framework-content">Synthesized definition bringing your new world into being</div>
+          </div>
         </div>
       </div>
 
