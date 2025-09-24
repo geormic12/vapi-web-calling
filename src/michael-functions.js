@@ -45,6 +45,14 @@ export class MichaelFunctionHandler {
                     return this.updateBeingGivenByGreaterStatement(functionCall.parameters);
                 case 'UpdateBeingCauseInMatterStatement':
                     return this.updateBeingCauseInMatterStatement(functionCall.parameters);
+                case 'HighlightIntegrityStatement':
+                    return this.highlightIntegrityStatement(functionCall.parameters);
+                case 'HighlightAuthenticityStatement':
+                    return this.highlightAuthenticityStatement(functionCall.parameters);
+                case 'HighlightBeingGivenByGreaterStatement':
+                    return this.highlightBeingGivenByGreaterStatement(functionCall.parameters);
+                case 'HighlightBeingCauseInMatterStatement':
+                    return this.highlightBeingCauseInMatterStatement(functionCall.parameters);
                 // Fallback cases for old function names (in case Vapi is still using them)
                 case 'UpdateCommitmentStatement':
                     console.log('DEBUG: Received old function name UpdateCommitmentStatement, redirecting to UpdateBeingGivenByGreaterStatement');
@@ -79,32 +87,28 @@ export class MichaelFunctionHandler {
         console.log(`🎯 Michael received focus request for: ${statementType}`);
         console.log(`📝 User message: "${userMessage}"`);
 
-        // Add visual highlight to the clicked statement box
+        // Apply highlight to the focused statement
         const elementId = statementType === 'causation' ? 'causationStatement' :
             statementType === 'commitment' ? 'commitmentStatement' :
                 statementType === 'integrity' ? 'integrityStatement' : 'authenticityStatement';
 
-        const statementElement = document.getElementById(elementId);
-        if (statementElement) {
-            // Add highlight effect
-            const card = statementElement.closest('.statement-card');
-            if (card) {
-                card.style.boxShadow = '0 0 20px rgba(102, 126, 234, 0.6)';
-                card.style.transform = 'scale(1.02)';
-                card.style.transition = 'all 0.3s ease';
+        const colors = {
+            integrity: '#4CAF50',
+            authenticity: '#2196F3',
+            commitment: '#FF9800',
+            causation: '#9C27B0'
+        };
 
-                // Remove highlight after 3 seconds
-                setTimeout(() => {
-                    card.style.boxShadow = '';
-                    card.style.transform = '';
-                }, 3000);
-            }
-        }
+        const color = colors[statementType] || '#667eea';
+
+        // Apply highlight using the simple highlight system
+        this.highlightStatement(elementId, color, `Focusing on ${statementType}`);
+
 
         // Create a response based on the statement type
         const responses = {
             causation: "I understand you want to work on Being Cause in the Matter. This is about taking full ownership and responsibility for your outcomes instead of being at the effect of circumstances. Let's explore where in your life you might be operating from victim consciousness and how you can shift to being the source of your results. What specific situation would you like to examine?",
-            commitment: "I see you want to focus on Being Given By Something Greater. This is about discovering your purpose, calling, and how you serve something beyond your personal interests. Let's explore what you're naturally drawn to contribute and what larger mission or service calls to you. What area of contribution feels most alive for you?",
+            commitment: "I see you want to focus on Being Given By Something Greater Than Yourself. This is about discovering your purpose, calling, and how you serve something beyond your personal interests. Let's explore what you're naturally drawn to contribute and what larger mission or service calls to you. What area of contribution feels most alive for you?",
             integrity: "You've chosen to work on integrity - the foundation of personal power and effectiveness. Integrity is about being whole, complete, and aligned between your word and your actions. Let's examine where there might be gaps between what you say and what you do, or where you're not honoring your commitments to yourself or others. What area of your life feels out of integrity?",
             authenticity: "You want to explore authenticity - being true to who you really are. This is about expressing your genuine self rather than who you think you should be or who others expect you to be. Let's discover where you might be wearing masks or hiding aspects of yourself. What situation makes you feel like you can't be completely authentic?"
         };
@@ -340,6 +344,143 @@ export class MichaelFunctionHandler {
                 searchCount: this.stats.knowledgeSearches
             }
         };
+    }
+
+    highlightIntegrityStatement(parameters) {
+        const { message = "We're focusing on integrity right now" } = parameters;
+
+        console.log(`💎 Michael highlighting integrity statement: "${message}"`);
+
+        this.highlightStatement('integrityStatement', '#4CAF50', message);
+
+        return {
+            success: true,
+            message: "Integrity statement highlighted",
+            agent: 'michael',
+            data: {
+                statementType: 'integrity',
+                highlightMessage: message,
+                timestamp: new Date().toISOString()
+            }
+        };
+    }
+
+    highlightAuthenticityStatement(parameters) {
+        const { message = "We're focusing on authenticity right now" } = parameters;
+
+        console.log(`🌟 Michael highlighting authenticity statement: "${message}"`);
+
+        this.highlightStatement('authenticityStatement', '#2196F3', message);
+
+        return {
+            success: true,
+            message: "Authenticity statement highlighted",
+            agent: 'michael',
+            data: {
+                statementType: 'authenticity',
+                highlightMessage: message,
+                timestamp: new Date().toISOString()
+            }
+        };
+    }
+
+    highlightBeingGivenByGreaterStatement(parameters) {
+        const { message = "We're focusing on being given by something greater right now" } = parameters;
+
+        console.log(`🎯 Michael highlighting Being Given By Something Greater statement: "${message}"`);
+
+        this.highlightStatement('commitmentStatement', '#FF9800', message);
+
+        return {
+            success: true,
+            message: "Being Given By Something Greater statement highlighted",
+            agent: 'michael',
+            data: {
+                statementType: 'beingGivenByGreater',
+                highlightMessage: message,
+                timestamp: new Date().toISOString()
+            }
+        };
+    }
+
+    highlightBeingCauseInMatterStatement(parameters) {
+        const { message = "We're focusing on being cause in the matter right now" } = parameters;
+
+        console.log(`⚡ Michael highlighting Being Cause In The Matter statement: "${message}"`);
+
+        this.highlightStatement('causationStatement', '#9C27B0', message);
+
+        return {
+            success: true,
+            message: "Being Cause In The Matter statement highlighted",
+            agent: 'michael',
+            data: {
+                statementType: 'beingCauseInMatter',
+                highlightMessage: message,
+                timestamp: new Date().toISOString()
+            }
+        };
+    }
+
+    highlightStatement(elementId, color, message) {
+        // First, clear any existing highlights on all statement cards
+        this.clearAllHighlights();
+
+        const statementElement = document.getElementById(elementId);
+
+        if (statementElement) {
+            const card = statementElement.closest('.statement-card');
+
+            if (card) {
+                // Apply highlight styling
+                card.style.transition = 'all 0.4s ease';
+                card.style.boxShadow = `0 0 30px ${color}80, 0 0 60px ${color}40, inset 0 0 20px ${color}20`;
+                card.style.transform = 'scale(1.05)';
+                card.style.border = `3px solid ${color}`;
+                card.style.zIndex = '10';
+                card.style.position = 'relative';
+
+                // Mark this card as highlighted for easy identification
+                card.setAttribute('data-highlighted', 'true');
+
+                // Add initial pulse animation
+                let pulseCount = 0;
+                const pulseInterval = setInterval(() => {
+                    if (pulseCount < 2) {
+                        card.style.boxShadow = `0 0 40px ${color}90, 0 0 80px ${color}50, inset 0 0 25px ${color}30`;
+                        setTimeout(() => {
+                            card.style.boxShadow = `0 0 30px ${color}80, 0 0 60px ${color}40, inset 0 0 20px ${color}20`;
+                        }, 300);
+                        pulseCount++;
+                    } else {
+                        clearInterval(pulseInterval);
+                    }
+                }, 600);
+
+                console.log(`✨ Highlighted ${elementId} with color ${color} and message: "${message}"`);
+            }
+        } else {
+            console.warn(`⚠️ Could not find element with ID: ${elementId}`);
+        }
+    }
+
+    clearAllHighlights() {
+        // Find all statement cards and clear any existing highlights
+        const statementCards = document.querySelectorAll('.statement-card[data-highlighted="true"]');
+
+        statementCards.forEach(card => {
+            card.style.transition = 'all 0.3s ease';
+            card.style.boxShadow = '';
+            card.style.transform = '';
+            card.style.border = '';
+            card.style.zIndex = '';
+            card.style.position = '';
+            card.removeAttribute('data-highlighted');
+        });
+
+        if (statementCards.length > 0) {
+            console.log(`🧹 Cleared ${statementCards.length} existing highlights`);
+        }
     }
 
     // Utility method to get current stats

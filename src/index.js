@@ -44,10 +44,62 @@ class VapiCallManager {
 
       // Add click listeners for the statement boxes
       this.setupStatementClickListeners();
+
+      // Add test keyboard shortcuts for highlight functions
+      this.setupHighlightTestKeys();
     }
 
     container.innerHTML = createAgentsGrid(agentsToRender);
     this.attachAgentListeners(agentsToRender);
+  }
+
+  setupHighlightTestKeys() {
+    // Add keyboard shortcuts for testing highlights
+    document.addEventListener('keydown', (event) => {
+      if (event.ctrlKey || event.metaKey) {
+        switch (event.key) {
+          case '1':
+            event.preventDefault();
+            this.testHighlight('integrity');
+            break;
+          case '2':
+            event.preventDefault();
+            this.testHighlight('authenticity');
+            break;
+          case '3':
+            event.preventDefault();
+            this.testHighlight('commitment');
+            break;
+          case '4':
+            event.preventDefault();
+            this.testHighlight('causation');
+            break;
+        }
+      }
+    });
+  }
+
+  testHighlight(type) {
+    console.log(`Testing highlight for: ${type}`);
+
+    const handler = this.functionHandlers.getHandler('michael');
+    if (!handler) {
+      console.log('Michael handler not found');
+      return;
+    }
+
+    const functionCalls = {
+      'integrity': { name: 'HighlightIntegrityStatement', parameters: { message: 'Testing integrity highlight' } },
+      'authenticity': { name: 'HighlightAuthenticityStatement', parameters: { message: 'Testing authenticity highlight' } },
+      'commitment': { name: 'HighlightBeingGivenByGreaterStatement', parameters: { message: 'Testing commitment highlight' } },
+      'causation': { name: 'HighlightBeingCauseInMatterStatement', parameters: { message: 'Testing causation highlight' } }
+    };
+
+    const functionCall = functionCalls[type];
+    if (functionCall) {
+      const result = handler.handleFunctionCall(functionCall);
+      console.log('Highlight test result:', result);
+    }
   }
 
   attachAgentListeners(agentsToRender = agentRegistry) {

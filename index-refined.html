@@ -138,6 +138,42 @@
         opacity: 1;
       }
 
+      .statement-card.highlighted {
+        animation: highlightPulse 2s ease-in-out;
+        box-shadow: 0 0 30px rgba(102, 126, 234, 0.8),
+          0 0 60px rgba(102, 126, 234, 0.4);
+        transform: scale(1.05);
+        z-index: 10;
+        position: relative;
+      }
+
+      @keyframes highlightPulse {
+        0% {
+          box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+          transform: scale(1.02);
+        }
+        25% {
+          box-shadow: 0 0 40px rgba(102, 126, 234, 0.9),
+            0 0 80px rgba(102, 126, 234, 0.5);
+          transform: scale(1.08);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(102, 126, 234, 0.8),
+            0 0 60px rgba(102, 126, 234, 0.4);
+          transform: scale(1.05);
+        }
+        75% {
+          box-shadow: 0 0 40px rgba(102, 126, 234, 0.9),
+            0 0 80px rgba(102, 126, 234, 0.5);
+          transform: scale(1.08);
+        }
+        100% {
+          box-shadow: 0 0 30px rgba(102, 126, 234, 0.8),
+            0 0 60px rgba(102, 126, 234, 0.4);
+          transform: scale(1.05);
+        }
+      }
+
       .statement-card h3 {
         color: #2c3e50;
         margin-bottom: 15px;
@@ -373,6 +409,11 @@
         Click the microphone to start a conversation with Michael. Share your
         thoughts about integrity, authenticity, commitment, and causation, and
         watch as your personal statements develop and evolve.
+        <br /><br />
+        <small style="color: #999; font-size: 0.8em">
+          Test highlights: Ctrl/Cmd + 1-4 (1=Integrity, 2=Authenticity,
+          3=Commitment, 4=Causation)
+        </small>
       </div>
     </div>
 

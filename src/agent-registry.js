@@ -873,6 +873,62 @@ export const agentRegistry = {
                     required: ["query"]
                 },
                 description: "Search knowledge base for information about personal development concepts"
+            },
+            {
+                name: "HighlightIntegrityStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        message: {
+                            type: "string",
+                            description: "Optional message about why we're focusing on integrity"
+                        }
+                    }
+                },
+                description: "Highlight the integrity statement box to draw the user's attention when discussing integrity"
+            },
+            {
+                name: "HighlightAuthenticityStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        message: {
+                            type: "string",
+                            description: "Optional message about why we're focusing on authenticity"
+                        }
+                    }
+                },
+                description: "Highlight the authenticity statement box to draw the user's attention when discussing authenticity"
+            },
+            {
+                name: "HighlightBeingGivenByGreaterStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        message: {
+                            type: "string",
+                            description: "Optional message about why we're focusing on being given by something greater"
+                        }
+                    }
+                },
+                description: "Highlight the 'Being Given By Something Greater' statement box to draw the user's attention when discussing purpose, calling, or service to something greater"
+            },
+            {
+                name: "HighlightBeingCauseInMatterStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        message: {
+                            type: "string",
+                            description: "Optional message about why we're focusing on being cause in the matter"
+                        }
+                    }
+                },
+                description: "Highlight the 'Being Cause In The Matter' statement box to draw the user's attention when discussing ownership, responsibility, and accountability"
             }
         ],
         model: {
