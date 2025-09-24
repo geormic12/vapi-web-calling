@@ -41,6 +41,9 @@ class VapiCallManager {
     if (isRefinedPage) {
       // Only render Michael on the refined page
       agentsToRender = { michael: agentRegistry.michael };
+
+      // Add click listeners for the statement boxes
+      this.setupStatementClickListeners();
     }
 
     container.innerHTML = createAgentsGrid(agentsToRender);
@@ -325,6 +328,125 @@ class VapiCallManager {
     if (this.speakerDisplay) {
       this.speakerDisplay.textContent = `Speaker: ${this.assistantIsSpeaking ? "Assistant" : "User"}`;
     }
+  }
+
+  setupStatementClickListeners() {
+    // Add click listener for "Being Cause In The Matter" box
+    const causationCard = document.getElementById('causationStatement')?.closest('.statement-card');
+    if (causationCard) {
+      causationCard.classList.add('clickable');
+      causationCard.addEventListener('click', () => {
+        this.handleStatementBoxClick('causation');
+      });
+    }
+
+    // Add click listeners for other boxes too for future functionality
+    const integrityCard = document.getElementById('integrityStatement')?.closest('.statement-card');
+    if (integrityCard) {
+      integrityCard.classList.add('clickable');
+      integrityCard.addEventListener('click', () => {
+        this.handleStatementBoxClick('integrity');
+      });
+    }
+
+    const authenticityCard = document.getElementById('authenticityStatement')?.closest('.statement-card');
+    if (authenticityCard) {
+      authenticityCard.classList.add('clickable');
+      authenticityCard.addEventListener('click', () => {
+        this.handleStatementBoxClick('authenticity');
+      });
+    }
+
+    const commitmentCard = document.getElementById('commitmentStatement')?.closest('.statement-card');
+    if (commitmentCard) {
+      commitmentCard.classList.add('clickable');
+      commitmentCard.addEventListener('click', () => {
+        this.handleStatementBoxClick('commitment');
+      });
+    }
+  }
+
+  handleStatementBoxClick(statementType) {
+    console.log(`Statement box clicked: ${statementType}`);
+
+    // Add visual feedback
+    const cardId = statementType === 'causation' ? 'causationStatement' :
+      statementType === 'commitment' ? 'commitmentStatement' :
+        statementType === 'integrity' ? 'integrityStatement' : 'authenticityStatement';
+
+    const card = document.getElementById(cardId)?.closest('.statement-card');
+    if (card) {
+      // Add clicked animation
+      card.style.transform = 'scale(0.98)';
+      card.style.transition = 'all 0.1s ease';
+      setTimeout(() => {
+        card.style.transform = 'scale(1)';
+      }, 100);
+    }
+
+    // If we have an active call with Michael, send a simulated user message to VAPI
+    if (this.connected && this.currentAgent === 'michael') {
+      const userMessage = this.getStatementFocusMessage(statementType);
+      console.log(`Sending simulated user message to VAPI: "${userMessage}"`);
+
+      // Send the message to VAPI (this triggers the agent's response and potential tool call)
+      this.vapi.send({
+        type: "add-message",
+        message: {
+          role: "user",
+          content: userMessage
+        }
+      });
+
+      // Optional: Update UI to show the simulated message in the chat window for transparency
+      const chatMessages = document.getElementById('chatMessages');
+      if (chatMessages) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("chat-message", "user");
+        messageDiv.textContent = `🖱️ Clicked: ${userMessage}`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Show the chat window if it's hidden
+        const chatWindow = document.getElementById('chat');
+        if (chatWindow) {
+          chatWindow.style.display = 'block';
+        }
+      }
+    } else {
+      // Show a message encouraging them to start a call
+      const instructionsElement = document.getElementById('instructions');
+      if (instructionsElement) {
+        const originalText = instructionsElement.textContent;
+        instructionsElement.textContent = `Start a conversation with Michael first, then click on the "${this.getStatementDisplayName(statementType)}" box to focus on that area.`;
+        instructionsElement.style.color = '#ff9800';
+
+        setTimeout(() => {
+          instructionsElement.textContent = originalText;
+          instructionsElement.style.color = '';
+        }, 3000);
+      }
+    }
+  }
+
+  getStatementFocusMessage(statementType) {
+    const messages = {
+      causation: "I want to work on Being Cause in the Matter - taking full ownership and responsibility for my outcomes instead of being at the effect of circumstances.",
+      commitment: "I want to work on Being Given By Something Greater - exploring my purpose, calling, and service to something beyond myself.",
+      integrity: "I want to work on my integrity - aligning my actions with my values and being whole and complete.",
+      authenticity: "I want to work on my authenticity - being true to myself and expressing who I really am."
+    };
+    return messages[statementType] || "I want to work on this area of personal development.";
+  }
+
+  getStatementDisplayName(statementType) {
+    const names = {
+      causation: "Being Cause In The Matter",
+      commitment: "Being Given By Something Greater",
+      integrity: "Integrity Statement",
+      authenticity: "Authenticity Statement"
+    };
+    return names[statementType] || statementType;
   }
 
   async endCall() {

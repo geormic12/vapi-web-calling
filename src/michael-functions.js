@@ -35,6 +35,8 @@ export class MichaelFunctionHandler {
 
         try {
             switch (functionCall.name) {
+                case 'FocusOnStatement':
+                    return this.focusOnStatement(functionCall.parameters);
                 case 'UpdateIntegrityStatement':
                     return this.updateIntegrityStatement(functionCall.parameters);
                 case 'UpdateAuthenticityStatement':
@@ -69,6 +71,70 @@ export class MichaelFunctionHandler {
                 error: error.message
             };
         }
+    }
+
+    focusOnStatement(parameters) {
+        const { statementType, userMessage } = parameters;
+
+        console.log(`🎯 Michael received focus request for: ${statementType}`);
+        console.log(`📝 User message: "${userMessage}"`);
+
+        // Add visual highlight to the clicked statement box
+        const elementId = statementType === 'causation' ? 'causationStatement' :
+            statementType === 'commitment' ? 'commitmentStatement' :
+                statementType === 'integrity' ? 'integrityStatement' : 'authenticityStatement';
+
+        const statementElement = document.getElementById(elementId);
+        if (statementElement) {
+            // Add highlight effect
+            const card = statementElement.closest('.statement-card');
+            if (card) {
+                card.style.boxShadow = '0 0 20px rgba(102, 126, 234, 0.6)';
+                card.style.transform = 'scale(1.02)';
+                card.style.transition = 'all 0.3s ease';
+
+                // Remove highlight after 3 seconds
+                setTimeout(() => {
+                    card.style.boxShadow = '';
+                    card.style.transform = '';
+                }, 3000);
+            }
+
+            // If the statement is empty, add a placeholder message
+            if (statementElement.textContent.trim() === '' ||
+                statementElement.textContent.includes('Your statement will appear here')) {
+                const placeholders = {
+                    causation: "Ready to explore taking full ownership and being cause in the matter...",
+                    commitment: "Ready to explore being given by something greater than yourself...",
+                    integrity: "Ready to explore integrity and alignment with your values...",
+                    authenticity: "Ready to explore authenticity and being true to yourself..."
+                };
+
+                statementElement.textContent = placeholders[statementType] || "Ready to explore this area...";
+                statementElement.style.fontStyle = 'italic';
+                statementElement.style.color = '#666';
+            }
+        }
+
+        // Create a response based on the statement type
+        const responses = {
+            causation: "I understand you want to work on Being Cause in the Matter. This is about taking full ownership and responsibility for your outcomes instead of being at the effect of circumstances. Let's explore where in your life you might be operating from victim consciousness and how you can shift to being the source of your results. What specific situation would you like to examine?",
+            commitment: "I see you want to focus on Being Given By Something Greater. This is about discovering your purpose, calling, and how you serve something beyond your personal interests. Let's explore what you're naturally drawn to contribute and what larger mission or service calls to you. What area of contribution feels most alive for you?",
+            integrity: "You've chosen to work on integrity - the foundation of personal power and effectiveness. Integrity is about being whole, complete, and aligned between your word and your actions. Let's examine where there might be gaps between what you say and what you do, or where you're not honoring your commitments to yourself or others. What area of your life feels out of integrity?",
+            authenticity: "You want to explore authenticity - being true to who you really are. This is about expressing your genuine self rather than who you think you should be or who others expect you to be. Let's discover where you might be wearing masks or hiding aspects of yourself. What situation makes you feel like you can't be completely authentic?"
+        };
+
+        return {
+            success: true,
+            message: "Statement focus activated - Michael is now focused on this area",
+            agent: 'michael',
+            data: {
+                statementType: statementType,
+                focusMessage: userMessage,
+                response: responses[statementType] || "Let's explore this area together. What would you like to examine?",
+                timestamp: new Date().toISOString()
+            }
+        };
     }
 
     updateIntegrityStatement(parameters) {

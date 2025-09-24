@@ -110,6 +110,32 @@
         padding: 25px;
         border: 1px solid #e9ecef;
         transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .statement-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-color: #007bff;
+      }
+
+      .statement-card.clickable {
+        cursor: pointer;
+      }
+
+      .statement-card.clickable::after {
+        content: "Click to focus on this area";
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        font-size: 0.8em;
+        color: #6c757d;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .statement-card.clickable:hover::after {
+        opacity: 1;
       }
 
       .statement-card h3 {

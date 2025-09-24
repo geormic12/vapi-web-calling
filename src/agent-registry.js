@@ -837,6 +837,25 @@ export const agentRegistry = {
                 description: "Updates the user's 'Being Cause In The Matter' statement when they express insights about ownership, responsibility, accountability, or being the source of outcomes"
             },
             {
+                name: "FocusOnStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        statementType: {
+                            type: "string",
+                            description: "The type of statement to focus on: 'causation' (Being Cause in the Matter), 'commitment' (Being Given By Something Greater), 'integrity', or 'authenticity'"
+                        },
+                        userMessage: {
+                            type: "string",
+                            description: "The user's expressed intention to work on this area"
+                        }
+                    },
+                    required: ["statementType", "userMessage"]
+                },
+                description: "Handles when the user clicks on a statement box to focus on that area of development"
+            },
+            {
                 name: "SearchKnowledgeBase",
                 async: false,
                 parameters: {
