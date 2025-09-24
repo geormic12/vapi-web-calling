@@ -9,6 +9,8 @@ export class MichaelFunctionHandler {
         this.stats = {
             integrityUpdates: 0,
             authenticityUpdates: 0,
+            givenByGreaterUpdates: 0,
+            causeInMatterUpdates: 0,
             knowledgeSearches: 0,
             totalCalls: 0
         };
@@ -16,7 +18,7 @@ export class MichaelFunctionHandler {
         // Initialize knowledge base stats
         getKnowledgeBaseStats();
 
-        console.log(`✅ Michael is ready with integrity and authenticity functions`);
+        console.log(`✅ Michael is ready with integrity, authenticity, being given by something greater, and being cause in the matter functions`);
     }
 
     handleFunctionCall(functionCall) {
@@ -28,15 +30,30 @@ export class MichaelFunctionHandler {
             timestamp: new Date().toISOString()
         });
 
+        // Debug: Log the exact function name being called
+        console.log(`DEBUG: Exact function name received: "${functionCall.name}"`);
+
         try {
             switch (functionCall.name) {
                 case 'UpdateIntegrityStatement':
                     return this.updateIntegrityStatement(functionCall.parameters);
                 case 'UpdateAuthenticityStatement':
                     return this.updateAuthenticityStatement(functionCall.parameters);
+                case 'UpdateBeingGivenByGreaterStatement':
+                    return this.updateBeingGivenByGreaterStatement(functionCall.parameters);
+                case 'UpdateBeingCauseInMatterStatement':
+                    return this.updateBeingCauseInMatterStatement(functionCall.parameters);
+                // Fallback cases for old function names (in case Vapi is still using them)
+                case 'UpdateCommitmentStatement':
+                    console.log('DEBUG: Received old function name UpdateCommitmentStatement, redirecting to UpdateBeingGivenByGreaterStatement');
+                    return this.updateBeingGivenByGreaterStatement(functionCall.parameters);
+                case 'UpdateCausationStatement':
+                    console.log('DEBUG: Received old function name UpdateCausationStatement, redirecting to UpdateBeingCauseInMatterStatement');
+                    return this.updateBeingCauseInMatterStatement(functionCall.parameters);
                 case 'SearchKnowledgeBase':
                     return this.searchKnowledgeBase(functionCall.parameters);
                 default:
+                    console.log(`DEBUG: Unknown function name: "${functionCall.name}"`);
                     return {
                         success: false,
                         message: `Unknown function: ${functionCall.name}`,
@@ -126,6 +143,82 @@ export class MichaelFunctionHandler {
                 statement: sanitizedStatement,
                 field: 'authenticity',
                 updateCount: this.stats.authenticityUpdates
+            }
+        };
+    }
+
+    updateBeingGivenByGreaterStatement(parameters) {
+        this.stats.givenByGreaterUpdates++;
+        const { statement } = parameters;
+
+        console.log(`🎯 Michael updating 'Being Given By Something Greater' statement: "${statement}"`);
+
+        // Sanitize the statement for safe DOM manipulation
+        const sanitizedStatement = statement.replace(/[<>]/g, '');
+
+        // Update the commitment field on the page (HTML ID remains for compatibility)
+        const givenByGreaterField = document.getElementById('commitmentStatement');
+        if (givenByGreaterField) {
+            givenByGreaterField.textContent = sanitizedStatement;
+            givenByGreaterField.style.backgroundColor = '#fff3e0';
+            givenByGreaterField.style.padding = '10px';
+            givenByGreaterField.style.borderRadius = '5px';
+            givenByGreaterField.style.border = '2px solid #ff9800';
+
+            // Add a subtle animation
+            givenByGreaterField.style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+                givenByGreaterField.style.backgroundColor = '#f9f9f9';
+                givenByGreaterField.style.border = '1px solid #ddd';
+            }, 2000);
+        }
+
+        return {
+            success: true,
+            message: "Being Given By Something Greater statement updated successfully",
+            agent: 'michael',
+            data: {
+                statement: sanitizedStatement,
+                field: 'beingGivenByGreater',
+                updateCount: this.stats.givenByGreaterUpdates
+            }
+        };
+    }
+
+    updateBeingCauseInMatterStatement(parameters) {
+        this.stats.causeInMatterUpdates++;
+        const { statement } = parameters;
+
+        console.log(`⚡ Michael updating 'Being Cause In The Matter' statement: "${statement}"`);
+
+        // Sanitize the statement for safe DOM manipulation
+        const sanitizedStatement = statement.replace(/[<>]/g, '');
+
+        // Update the causation field on the page (HTML ID remains for compatibility)
+        const causeInMatterField = document.getElementById('causationStatement');
+        if (causeInMatterField) {
+            causeInMatterField.textContent = sanitizedStatement;
+            causeInMatterField.style.backgroundColor = '#f3e5f5';
+            causeInMatterField.style.padding = '10px';
+            causeInMatterField.style.borderRadius = '5px';
+            causeInMatterField.style.border = '2px solid #9c27b0';
+
+            // Add a subtle animation
+            causeInMatterField.style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+                causeInMatterField.style.backgroundColor = '#f9f9f9';
+                causeInMatterField.style.border = '1px solid #ddd';
+            }, 2000);
+        }
+
+        return {
+            success: true,
+            message: "Being Cause In The Matter statement updated successfully",
+            agent: 'michael',
+            data: {
+                statement: sanitizedStatement,
+                field: 'beingCauseInMatter',
+                updateCount: this.stats.causeInMatterUpdates
             }
         };
     }

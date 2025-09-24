@@ -807,6 +807,36 @@ export const agentRegistry = {
                 description: "Updates the user's authenticity statement on the page with their new insights"
             },
             {
+                name: "UpdateBeingGivenByGreaterStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        statement: {
+                            type: "string",
+                            description: "The user's statement about being given by, inspired by, or called to something greater than themselves - their purpose, mission, or service to something beyond personal benefit"
+                        }
+                    },
+                    required: ["statement"]
+                },
+                description: "Updates the user's 'Being Given By Something Greater' statement when they express insights about purpose, calling, mission, or service to something beyond themselves"
+            },
+            {
+                name: "UpdateBeingCauseInMatterStatement",
+                async: false,
+                parameters: {
+                    type: "object",
+                    properties: {
+                        statement: {
+                            type: "string",
+                            description: "The user's statement about being cause in the matter - taking full ownership, responsibility, and accountability for creating outcomes rather than being at the effect of circumstances"
+                        }
+                    },
+                    required: ["statement"]
+                },
+                description: "Updates the user's 'Being Cause In The Matter' statement when they express insights about ownership, responsibility, accountability, or being the source of outcomes"
+            },
+            {
                 name: "SearchKnowledgeBase",
                 async: false,
                 parameters: {
@@ -814,16 +844,16 @@ export const agentRegistry = {
                     properties: {
                         query: {
                             type: "string",
-                            description: "Search query for integrity or authenticity concepts"
+                            description: "Search query for integrity, authenticity, being given by something greater, or being cause in the matter concepts"
                         },
                         category: {
                             type: "string",
-                            description: "Category to search in (integrity, authenticity, integration, application)"
+                            description: "Category to search in (integrity, authenticity, purpose, responsibility, integration, application)"
                         }
                     },
                     required: ["query"]
                 },
-                description: "Search knowledge base for information about integrity and authenticity concepts"
+                description: "Search knowledge base for information about personal development concepts"
             }
         ],
         model: {
