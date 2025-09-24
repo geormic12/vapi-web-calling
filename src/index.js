@@ -68,11 +68,11 @@ class VapiCallManager {
             break;
           case '3':
             event.preventDefault();
-            this.testHighlight('commitment');
+            this.testHighlight('being given by something greater');
             break;
           case '4':
             event.preventDefault();
-            this.testHighlight('causation');
+            this.testHighlight('being cause in the matter');
             break;
         }
       }
@@ -91,6 +91,9 @@ class VapiCallManager {
     const functionCalls = {
       'integrity': { name: 'HighlightIntegrityStatement', parameters: { message: 'Testing integrity highlight' } },
       'authenticity': { name: 'HighlightAuthenticityStatement', parameters: { message: 'Testing authenticity highlight' } },
+      'being given by something greater': { name: 'HighlightBeingGivenByGreaterStatement', parameters: { message: 'Testing being given by something greater highlight' } },
+      'being cause in the matter': { name: 'HighlightBeingCauseInMatterStatement', parameters: { message: 'Testing being cause in the matter highlight' } },
+      // Legacy support
       'commitment': { name: 'HighlightBeingGivenByGreaterStatement', parameters: { message: 'Testing commitment highlight' } },
       'causation': { name: 'HighlightBeingCauseInMatterStatement', parameters: { message: 'Testing causation highlight' } }
     };
@@ -388,7 +391,7 @@ class VapiCallManager {
     if (causationCard) {
       causationCard.classList.add('clickable');
       causationCard.addEventListener('click', () => {
-        this.handleStatementBoxClick('causation');
+        this.handleStatementBoxClick('being cause in the matter');
       });
     }
 
@@ -413,7 +416,7 @@ class VapiCallManager {
     if (commitmentCard) {
       commitmentCard.classList.add('clickable');
       commitmentCard.addEventListener('click', () => {
-        this.handleStatementBoxClick('commitment');
+        this.handleStatementBoxClick('being given by something greater');
       });
     }
   }
@@ -422,9 +425,11 @@ class VapiCallManager {
     console.log(`Statement box clicked: ${statementType}`);
 
     // Add visual feedback
-    const cardId = statementType === 'causation' ? 'causationStatement' :
-      statementType === 'commitment' ? 'commitmentStatement' :
-        statementType === 'integrity' ? 'integrityStatement' : 'authenticityStatement';
+    const cardId = statementType === 'being cause in the matter' ? 'causationStatement' :
+      statementType === 'being given by something greater' ? 'commitmentStatement' :
+        statementType === 'causation' ? 'causationStatement' :  // Legacy support
+          statementType === 'commitment' ? 'commitmentStatement' :  // Legacy support
+            statementType === 'integrity' ? 'integrityStatement' : 'authenticityStatement';
 
     const card = document.getElementById(cardId)?.closest('.statement-card');
     if (card) {
@@ -483,20 +488,26 @@ class VapiCallManager {
 
   getStatementFocusMessage(statementType) {
     const messages = {
-      causation: "I want to work on being caused in the matter statement",
-      commitment: "I want to work on being given by something greater statement",
+      'being cause in the matter': "I want to work on being cause in the matter statement",
+      'being given by something greater': "I want to work on being given by something greater statement",
       integrity: "I want to work on the integrity statement",
-      authenticity: "I want to work on the authenticity statement"
+      authenticity: "I want to work on the authenticity statement",
+      // Legacy support
+      causation: "I want to work on being cause in the matter statement",
+      commitment: "I want to work on being given by something greater statement"
     };
     return messages[statementType] || "I want to work on this area of personal development.";
   }
 
   getStatementDisplayName(statementType) {
     const names = {
-      causation: "Being Caused In The Matter Statement",
-      commitment: "Being Given By Something Greater Statement",
+      'being cause in the matter': "Being Cause In The Matter Statement",
+      'being given by something greater': "Being Given By Something Greater Statement",
       integrity: "Integrity Statement",
-      authenticity: "Authenticity Statement"
+      authenticity: "Authenticity Statement",
+      // Legacy support
+      causation: "Being Cause In The Matter Statement",
+      commitment: "Being Given By Something Greater Statement"
     };
     return names[statementType] || statementType;
   }

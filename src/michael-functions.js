@@ -84,19 +84,25 @@ export class MichaelFunctionHandler {
     focusOnStatement(parameters) {
         const { statementType, userMessage } = parameters;
 
-        console.log(`🎯 Michael received focus request for: ${statementType}`);
+        console.log(`\n🎯 ========== FOCUS ON STATEMENT DEBUG ==========`);
+        console.log(`📥 Michael received focus request for: ${statementType}`);
         console.log(`📝 User message: "${userMessage}"`);
+        console.log(`⏰ Timestamp: ${new Date().toISOString()}`);
 
         // Apply highlight to the focused statement
-        const elementId = statementType === 'causation' ? 'causationStatement' :
-            statementType === 'commitment' ? 'commitmentStatement' :
-                statementType === 'integrity' ? 'integrityStatement' : 'authenticityStatement';
+        const elementId = statementType === 'being cause in the matter' ? 'causationStatement' :
+            statementType === 'being given by something greater' ? 'commitmentStatement' :
+                statementType === 'causation' ? 'causationStatement' :  // Legacy support
+                    statementType === 'commitment' ? 'commitmentStatement' :  // Legacy support
+                        statementType === 'integrity' ? 'integrityStatement' : 'authenticityStatement';
 
         const colors = {
             integrity: '#4CAF50',
             authenticity: '#2196F3',
-            commitment: '#FF9800',
-            causation: '#9C27B0'
+            'being given by something greater': '#FF9800',
+            'being cause in the matter': '#9C27B0',
+            commitment: '#FF9800',  // Legacy support
+            causation: '#9C27B0'    // Legacy support
         };
 
         const color = colors[statementType] || '#667eea';
@@ -107,23 +113,40 @@ export class MichaelFunctionHandler {
 
         // Create a response based on the statement type
         const responses = {
-            causation: "I understand you want to work on Being Cause in the Matter. This is about taking full ownership and responsibility for your outcomes instead of being at the effect of circumstances. Let's explore where in your life you might be operating from victim consciousness and how you can shift to being the source of your results. What specific situation would you like to examine?",
-            commitment: "I see you want to focus on Being Given By Something Greater Than Yourself. This is about discovering your purpose, calling, and how you serve something beyond your personal interests. Let's explore what you're naturally drawn to contribute and what larger mission or service calls to you. What area of contribution feels most alive for you?",
-            integrity: "You've chosen to work on integrity - the foundation of personal power and effectiveness. Integrity is about being whole, complete, and aligned between your word and your actions. Let's examine where there might be gaps between what you say and what you do, or where you're not honoring your commitments to yourself or others. What area of your life feels out of integrity?",
-            authenticity: "You want to explore authenticity - being true to who you really are. This is about expressing your genuine self rather than who you think you should be or who others expect you to be. Let's discover where you might be wearing masks or hiding aspects of yourself. What situation makes you feel like you can't be completely authentic?"
+            'being cause in the matter': "Let's work on being cause in the matter. This is about taking full ownership and responsibility for your outcomes instead of being at the effect of circumstances. Where in your life might you be operating from victim consciousness, and how can you shift to being the source of your results? What specific situation would you like to examine?",
+            'being given by something greater': "Let's work on being given by something greater. This is about discovering your purpose, calling, and how you serve something beyond your personal interests. What are you naturally drawn to contribute? What larger mission or service calls to you? What area of contribution feels most alive for you?",
+            integrity: "Let's work on integrity. Integrity is about being whole, complete, and aligned between your word and your actions. Where might there be gaps between what you say and what you do, or where you're not honoring your commitments to yourself or others? What area of your life feels out of integrity?",
+            authenticity: "Let's work on authenticity. This is about being true to who you really are - expressing your genuine self rather than who you think you should be or who others expect you to be. Where might you be wearing masks or hiding aspects of yourself? What situation makes you feel like you can't be completely authentic?",
+            // Legacy support
+            causation: "Let's work on being cause in the matter. This is about taking full ownership and responsibility for your outcomes instead of being at the effect of circumstances. Where in your life might you be operating from victim consciousness, and how can you shift to being the source of your results? What specific situation would you like to examine?",
+            commitment: "Let's work on being given by something greater. This is about discovering your purpose, calling, and how you serve something beyond your personal interests. What are you naturally drawn to contribute? What larger mission or service calls to you? What area of contribution feels most alive for you?"
         };
 
-        return {
+        const agentResponse = responses[statementType] || "Let's explore this area together. What would you like to examine?";
+
+        // DEBUG: Log what the agent will say
+        console.log(`🗣️ AGENT RESPONSE DEBUG:`);
+        console.log(`📝 Statement Type: "${statementType}"`);
+        console.log(`🎤 What Michael will say: "${agentResponse}"`);
+        console.log(`📊 Response length: ${agentResponse.length} characters`);
+        console.log(`🔍 Contains "One moment": ${agentResponse.includes('One moment')}`);
+
+        const functionResult = {
             success: true,
             message: "Statement focus activated - Michael is now focused on this area",
             agent: 'michael',
             data: {
                 statementType: statementType,
                 focusMessage: userMessage,
-                response: responses[statementType] || "Let's explore this area together. What would you like to examine?",
+                response: agentResponse,
                 timestamp: new Date().toISOString()
             }
         };
+
+        console.log(`📤 Function returning to VAPI:`, JSON.stringify(functionResult, null, 2));
+        console.log(`🏁 ========== END FOCUS STATEMENT DEBUG ==========\n`);
+
+        return functionResult;
     }
 
     updateIntegrityStatement(parameters) {

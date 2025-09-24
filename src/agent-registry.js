@@ -778,7 +778,7 @@ export const agentRegistry = {
         functions: [
             {
                 name: "UpdateIntegrityStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -793,7 +793,7 @@ export const agentRegistry = {
             },
             {
                 name: "UpdateAuthenticityStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -808,7 +808,7 @@ export const agentRegistry = {
             },
             {
                 name: "UpdateBeingGivenByGreaterStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -823,7 +823,7 @@ export const agentRegistry = {
             },
             {
                 name: "UpdateBeingCauseInMatterStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -838,13 +838,13 @@ export const agentRegistry = {
             },
             {
                 name: "FocusOnStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
                         statementType: {
                             type: "string",
-                            description: "The type of statement to focus on: 'causation' (Being Cause in the Matter), 'commitment' (Being Given By Something Greater), 'integrity', or 'authenticity'"
+                            description: "The type of statement to focus on: 'being cause in the matter' (Being Cause in the Matter), 'being given by something greater' (Being Given By Something Greater), 'integrity', or 'authenticity'"
                         },
                         userMessage: {
                             type: "string",
@@ -857,7 +857,7 @@ export const agentRegistry = {
             },
             {
                 name: "SearchKnowledgeBase",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -876,7 +876,7 @@ export const agentRegistry = {
             },
             {
                 name: "HighlightIntegrityStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -890,7 +890,7 @@ export const agentRegistry = {
             },
             {
                 name: "HighlightAuthenticityStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -904,7 +904,7 @@ export const agentRegistry = {
             },
             {
                 name: "HighlightBeingGivenByGreaterStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -918,7 +918,7 @@ export const agentRegistry = {
             },
             {
                 name: "HighlightBeingCauseInMatterStatement",
-                async: false,
+                async: true,
                 parameters: {
                     type: "object",
                     properties: {
@@ -935,7 +935,7 @@ export const agentRegistry = {
             model: "gpt-3.5-turbo",
             provider: "openai",
             maxTokens: 250, // Using same as other agents
-            temperature: 0.7,
+            temperature: 0.3, // Lower temperature for more deterministic responses and fewer fillers
             emotionRecognitionEnabled: true,
         },
         transcriber: {
@@ -944,8 +944,8 @@ export const agentRegistry = {
             language: "en",
             provider: "deepgram",
         },
-        clientMessages: ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
-        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call"],
+        clientMessages: ["transcript", "hang", "function-call", "tool-calls", "speech-update", "metadata", "conversation-update"],
+        serverMessages: ["end-of-call-report", "status-update", "hang", "function-call", "tool-calls"],
         endCallPhrases: ["goodbye"], // Simplified end call phrases
     }
     // Add more agents here as needed
